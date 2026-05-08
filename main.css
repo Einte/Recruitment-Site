@@ -20,8 +20,8 @@ body {
     display: flex;
     justify-content: space-between;  /* logo left, nav right */
     align-items: center;
-    padding: 5px;
     z-index: 1000;
+    padding: 0 20px;
 }
 
 .navbar ul {
@@ -79,34 +79,25 @@ body {
     text-shadow: 0 0 8px #22c55e;
 }
 
-/* LOGO */
-.logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
-    color: #00d9ff;
-    letter-spacing: 2px;
-    position: relative;
-    width: 130px; /* Fixed width from your bottom style */
-    height: 25px;
-    padding: 5px;
-    background-color: rgb(67, 109, 4);
-    border-radius: 8px;
-    color: white;
+.logo{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    overflow: hidden;
 }
 
-.logo::before {
-    content: "";
-    position: absolute;
-    left: -12px;
-    top: 50%;
-    width: 8px;
-    height: 2px;
-    background: #009eba;
-    box-shadow: 0 0 6px #22c55e;
+.logo img{
+    height: 160px;
+    width: auto;
+    margin-top: -25px;
+    margin-bottom: -25px;
+    margin-left: 0px;
 }
 
-.logo:hover {
-    text-shadow: 0 0 10px #00d9ff;
+
+.logo:hover img {
+    transform: scale(1.05); /* Slight pop when hovering */
+    filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.9));
 }
 
 /* ===== HERO ===== */
