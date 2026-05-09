@@ -13,6 +13,7 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
+    background:#020403;
     background: rgba(12, 44, 28, 0.95);
     border-bottom: 1px solid #14532d;
     position: sticky;
@@ -302,6 +303,49 @@ footer p{
 
     /* Keeps your slider height fix */
     .hero-banner, .slider-track img {
-        height: 250px;
+        height: 350px;
     }
+}
+
+/* Default Variables (Dark Mode/Matrix) */
+:root {
+    --bg-color: #0b261b;
+    --text-color: #fefefe;
+    --accent-color: #22c55e;
+    --card-bg: #030a07;
+}
+
+/* Lights On Mode (Light Mode) */
+body.light-mode {
+    --bg-color: #f0fdf4;
+    --text-color: #111827;
+    --accent-color: #166534;
+    --card-bg: #ffffff;
+}
+
+/* Apply variables to your existing styles */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.terminal-card {
+    background: var(--card-bg);
+}
+
+/* Floating Toggle Style */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 2000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }

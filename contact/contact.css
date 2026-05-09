@@ -1,41 +1,50 @@
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* --- PAGE LAYOUT --- */
 body {
-    background: radial-gradient(circle at center, #0b1a12 0%, #020403 100%); 
-    margin: 0;
+    background: radial-gradient(circle at center, #0b1a12 0%, #033a1f 100%);
     font-family: sans-serif;
     color: #f8fafc;
 }
 
+/* --- PAGE SECTION --- */
 .page-section {
     padding: 80px 20px;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 80vh;
-    display: flex;
+    justify-content: center;
 }
 
 .page-section h1 {
     font-family: 'Orbitron', sans-serif;
-    color: #38bdf8;
+    color: #4f8348;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom:40px;
-    text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(1, 30, 8, 0.4);
 }
 
-/* --- THE FORM CONTAINER --- */
+/* --- FORM CONTAINER --- */
 .form-container {
-    background-color: rgb(25, 43, 38); 
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 40px;
-    border-radius: 8px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 12px;
+    background: rgb(20, 39, 33);
+    border: 1px solid rgb(32, 111, 4);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.5);
 }
 
+/* --- FORM GROUP --- */
 .form-group {
     margin-bottom: 25px;
     display: flex;
@@ -43,85 +52,98 @@ body {
 }
 
 .form-group label {
-    color: #38bdf8;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 11px;
     margin-bottom: 8px;
+    color: #68ff5a;
+    font-family: sans-serif, 'Times New Roman', Times, serif;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 
 /* --- INPUT FIELDS --- */
-.form-group input, textarea {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+.form-group input,
+.form-group textarea {
+    width: 100%;
     padding: 12px;
-    color: #fff;
-    font-family: 'monospace';
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    border-radius: 6px;
+    background: rgb(4, 10, 1);
+    border: 4px solid rgba(15, 58, 1, 0.2);
+    color: #54fe06;
+    font-size: 15px;
+    font-family: monospace;
+    transition: all 0.2s ease;
 }
 
-.form-group  input:focus, textarea:focus {
+.form-group textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+/* --- INPUT FOCUS --- */
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
-    border-color: #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-    background: rgba(56, 189, 248, 0.05);
+    border-color: #40ff00c2;
+    background:rgb(12, 62, 1);
+    box-shadow: 0 0 10px rgb(0, 242, 117);
 }
 
-/* --- THE SUBMIT BUTTON --- */
+/* --- SUBMIT BUTTON --- */
 .submit-btn {
     width: 100%;
     padding: 15px;
+    border-radius: 6px;
     background: transparent;
-    border: 1px solid #38bdf8;
-    color: #38bdf8;
+    border: 1px solid #9aff95;
+    color: #2fff00;
     font-family: 'Orbitron', sans-serif;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
+    letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 2px;
 }
 
 .submit-btn:hover {
-    background: #38bdf8;
-    color: #0f172a;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    background: #40ff00;
+    color: #000000;
+    box-shadow: 0 0 20px rgb(21, 255, 0);
 }
 
-/* --- NAVIGATION STYLES --- */
+/* --- NAVBAR --- */
 .navbar {
+    background:#020403;
+    display: flex;
+    gap: 30px;
     justify-content: center;
-    padding: 20px 50px;
-    background: rgba(15, 23, 42, 0.9);
-    border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+    
 }
 
-.navbar ul {
-    list-style: none; /* Removes the bullet points */
-    gap: 10px; /* Spacing between Home and Contact */
+.navbar ul{
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    padding: 10px;
 }
 
 .navbar li a {
-    text-decoration: none; /* Removes the underline */
-    color: #06fd71;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+    color:#ffffff;
+    text-decoration:none;
+    font-size: 18px;
 }
 
+/* --- NAV LINKS --- */
 .navbar li a:hover {
     color: #00ff11;
     text-shadow: 0 0 8px rgb(4, 255, 33);
 }
 
-/* Optional: Highlight the current page */
+/* --- ACTIVE PAGE --- */
 .navbar li a[href*="contact.html"] {
     color: #69ff73;
-    border-bottom: 2px solid #38bdf8;
+
+    border-bottom:
+        2px solid #41ff01;
+
     padding-bottom: 5px;
 }
-
