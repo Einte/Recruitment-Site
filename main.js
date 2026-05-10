@@ -53,10 +53,18 @@ function applyTheme(isDark) {
         body.classList.remove('light-mode');
         localStorage.setItem('currentTheme', 'dark');
         if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+        
+        // FORCE mobile background update
+        body.style.backgroundColor = "#0b261b"; 
+        body.style.backgroundImage = "radial-gradient(circle at center, #11281c 0%, #0b261b 100%)";
     } else {
         body.classList.add('light-mode');
         localStorage.setItem('currentTheme', 'light');
         if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        
+        // FORCE mobile background update
+        body.style.backgroundColor = "#f0fdf4";
+        body.style.backgroundImage = "none"; // Gradients often "stick" on mobile; removing it fixes the bug
     }
 }
 
