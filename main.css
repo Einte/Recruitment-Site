@@ -16,7 +16,7 @@
 
 /* Lights On Mode (Light Mode) */
 body.light-mode {
-    --bg-color: #f0fdf4;
+    --bg-color: #f0fdf4; /* Light White/Green */
     --text-color: #111827;
     --accent-color: #166534;
     --card-bg: #ffffff;
@@ -24,10 +24,21 @@ body.light-mode {
 }
 
 body {
-    background: var(--bg-color); /* Linked to Variable */
-    color: var(--text-color);    /* Linked to Variable */
+    /* Use background-color as a fallback for mobile */
+    background-color: var(--bg-color); 
+    /* Force the background to cover the full screen height */
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-color);
     font-family: sans-serif;
     transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* On mobile, if gradients are causing issues, we simplify to solid color */
+@media (max-width: 768px) {
+    body.light-mode {
+        background: #f0fdf4 !important; /* Forces solid color on mobile */
+    }
 }
 
 /* ===== NAVBAR ===== */
