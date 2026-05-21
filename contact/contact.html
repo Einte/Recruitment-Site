@@ -1,42 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Careers Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./contact.css">
-   
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../Global-bg.js/global-bg.js"></script>
+    <link rel="stylesheet" href="../themes.css/theme.css">
+    <link rel="stylesheet" href="../contact/contact.css">
+  <title>Contact Terminal | Enfield Dev Ltd</title>
+  </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+
+  <div class="bg-canvas" id="canvasContainer">
+    <div class="ambient-glow glow-green"></div>
+    <div class="ambient-glow glow-blue"></div>
+    <svg id="plexusSVG"></svg>
+  </div>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <div class="site-wrapper">
+    <header class="navbar glass-panel">
+      <div class="logo-text">ENFIELD <span class="logo-accent-box">DEV</span> <span class="logo-sub-tag">LTD</span></div>
+      
+      <div class="theme-toggle-wrapper">
+        <span class="toggle-label" id="toggleLabel">Dark</span>
+        <label class="theme-switch">
+          <input type="checkbox" id="themeCheckbox">
+          <span class="slider-toggle"></span>
+        </label>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
+        <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
+        <li><a href="/apply/apply.html">Apply</a></li>
+        <li><a href="/courses/courses.html">Courses</a></li>
+        <li><a href="/maps/maps.html">Maps</a></li>
+        <li><a href="/support/support.html">Support</a></li>
+        <li><a href="/contact/contact.html" style="color: #22c55e;">Contact</a></li>
+      </ul>
+      <div class="main-hub" id="masterHubBtn"><span></span><span></span><span></span></div>
     </header>
 
-    <main class="page-section">
-        <h1>Get In Touch</h1>
-        <div class="form-container">
-            <form action="#">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="email@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Subject</label>
-                    <input type="text" required>
-                </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea rows="5" placeholder="How can we help you?"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+    <div class="mobile-sidebar-panel" id="mobileSidebar">
+      <nav class="nav-container">
+        <a class="plate" href="../index.html">Home</a>
+        <a class="plate" href="/meet-the-team/meet-the-team.html">Meet the Team</a>
+        <a class="plate" href="/job-roles/job-roles.html">Job Roles</a>
+        <a class="plate" href="/apply/apply.html">Apply</a>
+        <a class="plate" href="/courses/courses.html">Courses</a>
+        <a class="plate" href="/contact/contact.html" style="color: #22c55e;">Contact</a>
+      </nav>
+    </div>
+
+    <main>
+      <div class="transmission-console glass-panel">
+        <div class="console-header">
+          <h3>Transmission Console</h3>
+          <p>Fill out the parameters below to dispatch your message sequence securely.</p>
         </div>
+
+        <form id="secureContactForm" onsubmit="handleMessageTransmission(event)" style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="console-field">
+            <label for="identityKey">Operator Identity Name</label>
+            <input type="text" id="identityKey" placeholder="Enter full name or identifier..." required>
+          </div>
+
+          <div class="console-field">
+            <label for="commsEmail">Return Sub-Space Routing Email</label>
+            <input type="email" id="commsEmail" placeholder="yourname@domain.com" required>
+          </div>
+
+          <div class="console-field">
+            <label for="payloadMessage">Message Encrypted Data Payload</label>
+            <textarea id="payloadMessage" rows="6" placeholder="State your objective, technical parameters, or project brief..." required></textarea>
+          </div>
+
+          <button type="submit" class="transmit-btn">Send</button>
+        </form>
+      </div>
     </main>
+  </div>
+
+  <div class="popup-overlay" id="transmissionSuccessPopup">
+    <div class="popup-card">
+      <h4>Transmission Successful</h4>
+      <p>Your message data stream has been securely dispatched to the matrix node terminal.</p>
+      <button class="popup-close-btn" onclick="dismissPopupAlert()">Dismiss</button>
+    </div>
+  </div>
+   <footer>
+      <div class="social-row">
+        <a href="https://github.com" target="_blank" class="social-icon">GH // GITHUB</a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon">LN // LINKEDIN</a>
+        <a href="https://twitter.com" target="_blank" class="social-icon">X // TERMINAL</a>
+      </div>
+      <p>&copy; 2026 Enfield Dev LTD. Core career matrix indexes actively maintained.</p>
+    </footer>
+
+ 
+
 </body>
 </html>

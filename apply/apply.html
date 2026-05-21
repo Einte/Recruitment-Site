@@ -2,80 +2,179 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="apply.css">
-  <title>Biometric Enrollment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../Global-bg.js/global-bg.js"></script>
+    <link rel="stylesheet" href="../themes.css/theme.css">
+    <link rel="stylesheet" href="../apply/apply.css">
+    <title>BioMetric Enrolment Station | Enfield Dev LTD</title>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="apply.html">Apply</a></li>
-        <li><a href="/contact/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section id="apply-section">
-      <div class="terminal-window">
-        <!-- LEFT -->
-        <div class="terminal-left">
-          <h2 class="terminal-title">BIOMETRIC ENROLLMENT</h2>
-          <form id="form" onsubmit="event.preventDefault();">
-            <div class="input-row">
-              <div class="input-group">
-                <label>FIRST NAME</label>
-                <input type="text" id="first">
-              </div>
-              <div class="input-group">
-                <label>LAST NAME</label>
-                <input type="text" id="last">
-              </div>
-            </div>
-            <div class="input-group">
-              <label>EMAIL</label>
-              <input type="email" id="email">
-            </div>
-            <div class="file-preview-zone" id="file-name">NO FILE</div>
-            <div class="action-buttons">
-              <button type="button" class="tech-btn" id="upload">UPLOAD</button>
-              <input type="file" id="file" hidden>
-              <button type="button" class="tech-btn" id="generate">GENERATE</button>
-            </div>
-            <div class="video-container">
-              <video id="video" autoplay playsinline></video>
-              <div class="laser" id="laser"></div>
-            </div>
-            <button type="button" class="tech-btn" id="scan">START SCAN</button>
-            <p id="status-text">STATUS: STANDBY</p>
-          </form>
+ <svg id="plexusSVG"></svg>
+    <div class="congrats-modal-overlay" id="congratsOverlay">
+        <div class="congrats-card glass-panel">
+            <h2>Congrats! 🎉</h2>
+            <p>Your application has been submitted</p>
+            <button type="button" class="btn-modal-close" onclick="dismissCelebrationModal()">Close Node</button>
         </div>
-        <!-- RIGHT -->
-        <div class="terminal-right">
-          <div class="id-card-modern">
-            <div class="photo-area">
-              <img id="preview-img" src="https://via.placeholder.com/150">
-            </div>
-            <h3 id="preview-name">SUBJECT_NULL</h3>
-            <p id="preview-email">---</p>
-            <p id="preview-file">NONE</p>
-            <div class="verify-badge" id="badge">LOCKED</div>
-            <button id="submit" class="neon-glass-btn" disabled>SEND</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
 
+    <div class="site-wrapper">
+
+        <header class="navbar glass-panel">
+            <div class="logo-text">
+                ENFIELD <span class="logo-accent-box">DEV</span> <span class="logo-sub-tag">LTD</span>
+            </div>
+           
+            <div class="theme-toggle-wrapper">
+                <span class="toggle-label" id="toggleLabel">Dark</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeCheckbox">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
+                <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
+                <li><a href="/apply/apply.html" class="active-link">Apply</a></li>
+                <li><a href="/courses/courses.html">Courses</a></li>
+                <li><a href="/maps/maps.html">Maps</a></li>
+                <li><a href="/support/support.html">Support</a></li>
+                <li><a href="/contact/contact.html">Contact</a></li>
+            </ul>
+
+        </header>
+
+        <main>
+
+            <div class="speech-bubble-wrapper">
+                <section class="speech-bubble-card glass-panel">
+                    <h1>Join the <span>Enfield Dev Ltd</span> Core Network</h1>
+                    <p>We are searching for the next generation of software engineers, database operators, and systems
+                        architects to optimize our local digital infrastructure ecosystem.</p>
+                    <p>Initialize your identity parameters inside the terminal module on the right. Secure biometric
+                        onboarding tracks data fields directly into your node registration file.</p>
+                </section>
+            </div>
+
+            <section class="biometric-console glass-panel">
+                <div class="console-header-title">// Biometric Enrolment Station v3.30</div>
+
+                <div class="console-top-row">
+                    <div class="photo-area-box" id="photoTarget">
+                        <div class="photo-placeholder-text" id="photoTxt">[ Frame Empty ]</div>
+                        <img id="freezeFrameCapture" src="" alt="Captured Profile Snapshot">
+                    </div>
+
+                    <div class="status-display-pane" id="statusBoxPane">
+                        <span class="status-title-lbl">STATUS: IDLE</span>
+                        <span style="color: #a3c2ae; font-style: italic;">Await validation parameter data
+                            generation...</span>
+                    </div>
+                </div>
+
+                <div class="console-bottom-grid">
+
+                    <div class="left-media-hardware-column" id="hardwareCol">
+                        <div class="camera-video-window" id="camWindow">
+                            <div class="laser-scanner-line"></div>
+                            <div class="cam-icon-indicator" id="camIcon">📷</div>
+                            <div class="cam-closed-overlay" id="camClosedMsg">CAMERA IDLE</div>
+                            <video id="liveWebcam" autoplay playsinline muted></video>
+                        </div>
+
+                        <button type="button" class="btn-console-action btn-start" id="startActionBtn">Start
+                            Scan</button>
+
+                        <button type="button" class="btn-console-action btn-generate"
+                            id="generateActionBtn">Generate</button>
+
+                        <button type="button" class="btn-console-action btn-submit-app" id="submitApplicationBtn">Submit
+                            Application</button>
+                    </div>
+
+                    <form id="recruitmentForm" class="right-fields-matrix-column" onsubmit="event.preventDefault();">
+
+                        <div class="field-inline-row">
+                            <div class="field-cell">
+                                <span class="field-label-tag">First Name</span>
+                                <input type="text" id="inFirstName" placeholder="First Name" required>
+                            </div>
+                            <div class="field-cell">
+                                <span class="field-label-tag">Last Name</span>
+                                <input type="text" id="inLastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+
+                        <div class="field-inline-row">
+                            <div class="field-cell">
+                                <span class="field-label-tag">Phone Number</span>
+                                <input type="tel" id="inPhone" placeholder="Phone Number" required>
+                            </div>
+                            <div class="field-cell">
+                                <span class="field-label-tag">Email Address</span>
+                                <input type="email" id="inEmail" placeholder="Email Address" required>
+                            </div>
+                        </div>
+
+                        <div class="field-inline-row">
+                            <div class="field-cell">
+                                <span class="field-label-tag">Job Title</span>
+                                <select id="inJobProvision" required onchange="syncJobCode(this.value)">
+                                    <option value="" disabled selected>Select Track</option>
+                                    <option value="Junior Web Developer">Junior Web Developer</option>
+                                    <option value="Apprentice Infrastructure Engineer">Apprentice Infrastructure
+                                        Engineer</option>
+                                    <option value="Database Operator">Database Operator</option>
+                                </select>
+                            </div>
+                            <div class="field-cell">
+                                <span class="field-label-tag">Job Code</span>
+                                <input type="text" id="inJobCode" placeholder="Job Code" readonly>
+                            </div>
+                        </div>
+
+                        <div class="field-inline-row">
+                            <div class="field-cell">
+                                <span class="field-label-tag">CV Upload</span>
+                                <div class="file-input-wrapper">
+                                    <div class="custom-file-btn" id="uploadFileLabel">Upload CV (PDF)</div>
+                                    <input type="file" id="inCvUpload" accept=".pdf" onchange="updateFileLabel(this)">
+                                </div>
+                            </div>
+                            <div class="field-cell">
+                                <span class="field-label-tag">Job Ref</span>
+                                <input type="text" id="inJobRef" placeholder="Reference Code" readonly>
+                            </div>
+                        </div>
+
+                        <div class="cover-letter-wrapper">
+                            <label for="inCoverLetter" class="field-label-tag">Cover Letter</label>
+                            <textarea id="inCoverLetter" rows="3"
+                                placeholder="Provide background credentials motivation summary specifications..."></textarea>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+        </main>
+
+        <canvas id="snapshotCanvas" width="400" height="400" style="display:none;"></canvas>
+
+        <footer>
+            <p>&copy; 2026 Careers Portal // Enfield Dev Ltd. All rights reserved.</p>
+        </footer>
+    </div>
 
   
-  <script src="apply.js"></script>
-  <script src="../main.js"></script>
+<script src="../apply/apply.js">
+
+ 
+
+</script>
 </body>
 
 </html>

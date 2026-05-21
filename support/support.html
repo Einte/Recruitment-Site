@@ -1,43 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support | Careers Portal</title>
-    <link rel="stylesheet" href="../main.css"> 
-    <link rel="stylesheet" href="./support.css">
+    <script src="../Global-bg.js/global-bg.js"></script>
+    <link rel="stylesheet" href="../themes.css/theme.css">
+    <link rel="stylesheet" href="../support/support.css">
+    <title>Support Operations | Enfield Dev LTD</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../support/support.html">Support</a></li>
-                <li><a href="../contact/contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main class="support-page">
-    <section class="support-container">
-        <h1>Help & Support</h1>
-        <p class="subtitle">Common Questions</p>
-        
-        <ul>
-            <li>
-                <strong>How do I track my application?</strong>
-                <p>Check your email for a tracking ID.</p>
-            </li>
-            <li>
-                <strong>Are the courses certified?</strong>
-                <p>Yes, all technical courses carry ISO certification.</p>
-            </li>
-            <li>
-                <strong>Technical issues?</strong>
-                <p>Use the contact form to reach our IT team.</p>
-            </li>
-        </ul>
-    </section>
-</main>
+    <div class="bg-canvas" id="canvasContainer">
+        <div class="ambient-glow glow-green"></div>
+        <div class="ambient-glow glow-blue"></div>
+        <svg id="plexusSVG"></svg>
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <div class="site-wrapper">
+        <header class="navbar glass-panel">
+            <div class="logo-text">ENFIELD <span class="logo-accent-box">DEV</span> <span
+                    class="logo-sub-tag">LTD</span></div>
+
+            <div class="theme-toggle-wrapper">
+                <span class="toggle-label" id="toggleLabel">Dark</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeCheckbox">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
+                <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
+                <li><a href="/apply/apply.html">Apply</a></li>
+                <li><a href="/courses/courses.html">Courses</a></li>
+                <li><a href="/maps/maps.html">Maps</a></li>
+                <li><a href="/support/support.html" style="color: #22c55e;">Support</a></li>
+                <li><a href="/contact/contact.html">Contact</a></li>
+            </ul>
+            <div class="main-hub" id="masterHubBtn"><span></span><span></span><span></span></div>
+        </header>
+
+        <div class="mobile-sidebar-panel" id="mobileSidebar">
+            <nav class="nav-container">
+                <a class="plate" href="../index.html">Home</a>
+                <a class="plate" href="/meet-the-team/meet-the-team.html">Meet the Team</a>
+                <a class="plate" href="/job-roles/job-roles.html">Job Roles</a>
+                <a class="plate" href="/apply/apply.html">Apply</a>
+                <a class="plate" href="/courses/courses.html">Courses</a>
+                <a class="plate" href="/support/support.html" style="color: #22c55e;">Support</a>
+            </nav>
+        </div>
+
+        <main>
+            <section class="page-title-section">
+                <h2>Operations Support Matrix</h2>
+                <p>Resolve operational anomalies, review systemic deployment documentation, or interface directly with
+                    engineers.</p>
+            </section>
+
+            <div class="diagnostic-strip glass-panel">
+                <div class="diagnostic-title">
+                    <div class="pulse-node"></div>
+                    <h4>PERIMETER TELEMETRY SYSTEM ACTIVE</h4>
+                </div>
+                <div class="telemetry-row">
+                    <div class="telemetry-item"><span class="telemetry-label">API LATENCY:</span><span
+                            class="telemetry-val">12ms</span></div>
+                    <div class="telemetry-item"><span class="telemetry-label">NODE STATUS:</span><span
+                            class="telemetry-val">0 FAULTS</span></div>
+                    <div class="telemetry-item"><span class="telemetry-label">SECURE LOAD:</span><span
+                            class="telemetry-val">0.04%</span></div>
+                </div>
+            </div>
+
+            <div class="dashboard-layout">
+
+                <div class="support-kb-group">
+                    <h4 class="section-subtitle">Predictive Knowledge Modules</h4>
+
+                    <article class="kb-card glass-panel">
+                        <div class="kb-header">
+                            <h3>Cross-Platform Line Ending Terminations</h3>
+                            <span class="kb-tag">Environment</span>
+                        </div>
+                        <p>If local validation layers crash inside shared workstation builds, confirm your environmental
+                            configuration is translating CRLF blocks safely across host Windows and Mac filesystems.</p>
+                    </article>
+
+                    <article class="kb-card glass-panel">
+                        <div class="kb-header">
+                            <h3>Air-Gapped Raspberry Pi Backends</h3>
+                            <span class="kb-tag">Infrastructure</span>
+                        </div>
+                        <p>Ensure application routing parameters point exclusively toward the isolated private pipeline
+                            network array. External web assets cannot resolve inside our secured database schema setups.
+                        </p>
+                    </article>
+
+                    <article class="kb-card glass-panel">
+                        <div class="kb-header">
+                            <h3>Microcontroller Target Diagnostic Resets</h3>
+                            <span class="kb-tag">Hardware</span>
+                        </div>
+                        <p>When custom interposer modules or rounded peripheral hardware nodes fall out of phase during
+                            a flashing stack routine, follow the low-level hard register ground-pin override steps.</p>
+                    </article>
+                </div>
+
+                <div class="ticket-terminal glass-panel">
+                    <div class="terminal-header">
+                        <h3>Incident Reporting Terminal</h3>
+                        <p>Initialize a high-priority tech support ticket directly to our network response squad.</p>
+                    </div>
+
+                    <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="form-field">
+                            <label for="userName">Identity Name</label>
+                            <input type="text" id="userName" placeholder="e.g., Engineer Savine" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="userEmail">Secure Routing Email</label>
+                            <input type="email" id="userEmail" placeholder="username@enfielddev.co.uk" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="ticketCategory">Classification Vector</label>
+                            <select id="ticketCategory" required>
+                                <option value="net">Network Routing Attenuation</option>
+                                <option value="db">Relational Schema Access Failures</option>
+                                <option value="hw">Peripheral Circuit Trace Fault</option>
+                                <option value="other">General Matrix Outage</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="userMessage">Telemetry Parameters / Diagnostics</label>
+                            <textarea id="userMessage" rows="5"
+                                placeholder="Provide raw logs, tracing patterns, or terminal fault codes..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Transmit Ticket Signal</button>
+                    </form>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-row">
+                <a href="https://github.com" target="_blank" class="social-icon">GH // GITHUB</a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon">LN // LINKEDIN</a>
+                <a href="https://twitter.com" target="_blank" class="social-icon">X // TERMINAL</a>
+            </div>
+            <p>&copy; 2026 Enfield Dev LTD. Core career matrix indexes actively maintained.</p>
+        </footer>
+    </div>
+
+
 </body>
+
 </html>

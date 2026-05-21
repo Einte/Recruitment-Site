@@ -1,48 +1,375 @@
-/* Wrapper */
-.map-responsive {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 ratio */
-    height: 0;
-    overflow: hidden;
-    margin-top: 20px;
-}
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Map */
-.map-responsive iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 90%;
-    border: 0;
-    border-radius: 20px;
-}
+    body {
+      background-color: var(--body-bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
 
-.navbar {
-    background:#020403;
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    
-}
+    /* ── BACKGROUND CANVAS & PLEXUS ANIMATION ── */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(180deg, #020705 0%, #010302 100%);
+    }
 
-.navbar ul{
-    display: flex;
-    list-style: none;
-    gap: 10px;
-    padding: 10px;
-}
+    .ambient-glow {
+      position: absolute;
+      border-radius: 100%;
+      opacity: 0.25;
+      filter: blur(100px);
+    }
 
-.navbar li a {
-    color:#ffffff;
-    text-decoration:none;
-    font-size: 18px;
-}
+    .glow-green {
+      background: radial-gradient(circle, #22c55e 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      bottom: -15%;
+      left: -15%;
+    }
 
-/* --- ACTIVE PAGE --- */
-.navbar li a[href*="maps.html"]{
-    color: #69ff73;
-    border-bottom:2px solid #44ff00;
-    padding-bottom: 5px;
-}
+    .glow-blue {
+      background: radial-gradient(circle, #00d9ff 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      top: -15%;
+      right: -15%;
+    }
+
+    #plexusSVG {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    .site-wrapper {
+      position: relative;
+      z-index: 5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    /* ── GLASS PANEL STYLING ── */
+    .glass-panel {
+      position: relative;
+      background: rgba(4, 18, 10, 0.5) !important;
+      backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
+      border: 1px solid rgba(34, 197, 94, 0.35) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ── DESKTOP NAVIGATION BAR ── */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-top: none !important;
+      border-left: none !important;
+      border-right: none !important;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ccffd8;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #22c55e;
+      text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    }
+
+    .main-hub,
+    .mobile-sidebar-panel,
+    .menu-overlay {
+      display: none;
+    }
+
+ /* ── LOGO BRANDING ── */
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            font-size: 1.15rem;
+            color: var(--text-main);
+            transition: color 0.1s;
+        }
+
+    .logo-accent-box {
+      background: linear-gradient(135deg, #00d9ff, #00b4d8);
+      color: #020805;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 900;
+    }
+
+    .logo-sub-tag {
+      font-size: 0.75rem;
+      color: rgba(204, 255, 216, 0.6);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    /* ── MOBILE 3x3 DOT MENU SYSTEM (FIXED Z-INDEX LAYER CONFLICTS) ── */
+    @media screen and (max-width: 768px) {
+      .nav-links { display: none !important; }
+      .navbar { width: 100% !important; padding: 0 20px !important; flex-direction: row-reverse !important; }
+      
+      /* Reset overlay level to be safely behind navigation nodes */
+      .menu-overlay {
+        display: block; 
+        position: fixed; 
+        inset: 0; 
+        background: rgba(2, 8, 5, 0.6);
+        opacity: 0; 
+        pointer-events: none; 
+        transition: opacity 0.4s ease; 
+        
+      }
+      .menu-overlay.is-open { opacity: 1; pointer-events: auto; }
+      
+      .main-hub {
+        display: grid; 
+        width: 44px; 
+        height: 44px; 
+        border-radius: 8px; 
+        background: rgba(4, 20, 12, 0.85);
+        border: 1.5px solid #00d9ff; 
+        box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+        grid-template-columns: repeat(3, 4px); 
+        gap: 4px; 
+        justify-content: center; 
+        align-content: center;
+        cursor: pointer; 
+        transition: all 0.3s ease, transform 0.4s ease; 
+        z-index: 500;
+      }
+      .main-hub.is-active { border-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); transform: rotate(-90deg); }
+      .main-hub span { width: 4px; height: 4px; background-color: #00d9ff; border-radius: 50%; }
+      .main-hub.is-active span { background-color: #22c55e; }
+      
+      .mobile-sidebar-panel {
+        display: flex; 
+        position: fixed; 
+        top: 70px; 
+        left: -325px; 
+        width: 320px; 
+        height: calc(100vh - 70px);
+        background: rgba(3, 14, 8, 0.95) !important; 
+        border: 1.5px solid rgba(34, 197, 94, 0.45) !important;
+        border-left: none !important; 
+        transition: left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 40px 0px; 
+        flex-direction: column; 
+        z-index: 200;
+      }
+      .mobile-sidebar-panel.is-open { left: 0 !important; }
+      .nav-container { display: flex; flex-direction: column; gap: 24px; width: 100%; margin-top: 30px; padding: 0 35px; }
+      
+      /* Explicit interactive states for menu links */
+      .plate { 
+        text-decoration: none; 
+        font-family: monospace; 
+        color: #ccffd8; 
+        font-size: 1.3rem; 
+        font-weight: bold;
+        transition: all 0.2s ease;
+        padding: 5px 0;
+      }
+      .plate:hover {
+        color: #22c55e;
+        text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+        transform: translateX(4px);
+      }
+    }
+
+    /* ── WORKSPACE DASHBOARD (COMPACT GRID NO WHITE SPACE) ── */
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .page-title-section h2 {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .page-title-section p {
+      color: var(--text-main);
+      font-size: 15px;
+    }
+
+    /* Split Dashboard Layout */
+    .map-dashboard-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 25px;
+      align-items: stretch;
+      min-height: 520px;
+    }
+
+    /* Left Sidebar: Data Metrics */
+    .info-column {
+      border-radius: 20px;
+      padding: 35px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .meta-block-group {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .info-card {
+      background: rgba(2, 12, 6, 0.4);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .info-card h3 {
+      font-family: monospace;
+      font-size: 11px;
+      color: #00d9ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      font-size: 15px;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .info-card .highlight {
+      color: #86efac;
+      font-weight: bold;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #22c55e;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 8px 16px;
+      border-radius: 30px;
+      width: fit-content;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    /* Right Sidebar: Full-Height Map Container */
+    .map-column {
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .map-column iframe {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 520px;
+      border: none !important;
+      filter: grayscale(1) invert(0.92) contrast(1.15) brightness(0.95);
+    }
+
+    /* ── FOOTER STYLE ── */
+    footer {
+      border-top: 1px solid rgba(34, 197, 94, 0.2);
+      background: rgba(2, 8, 4, 0.8);
+      padding: 25px 20px;
+      text-align: center;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icon {
+      color: #ccffd8;
+      text-decoration: none;
+      font-family: monospace;
+      font-size: 13px;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(4, 18, 10, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .social-icon:hover {
+      color: #00d9ff;
+      border-color: #00d9ff;
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+    }
+
+    footer p { color: #a3c2ae; font-size: 13px; }
+
+    /* Responsive Grid Adjustments */
+    @media screen and (max-width: 960px) {
+      .map-dashboard-grid { grid-template-columns: 1fr; }
+      .map-column iframe { min-height: 400px; }
+    }

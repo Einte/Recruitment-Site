@@ -1,29 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Locations | Careers Portal</title>
-    <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./maps.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../Global-bg.js/global-bg.js"></script>
+    <link rel="stylesheet" href="../themes.css/theme.css">
+    <link rel="stylesheet" href="../maps/maps.css">
+  <title>Location Matrix | Enfield Dev LTD</title>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="maps.html">Maps</a></li>
-            </ul>
-        </nav>
+
+
+    <svg id="plexusSVG"></svg>
+
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <div class="site-wrapper">
+    <header class="navbar glass-panel">
+      <div class="logo-text">ENFIELD <span class="logo-accent-box">DEV</span> <span class="logo-sub-tag">LTD</span></div>
+      <div class="theme-toggle-wrapper">
+                <span class="toggle-label" id="toggleLabel">Dark</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeCheckbox">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
+        <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
+        <li><a href="/apply/apply.html">Apply</a></li>
+        <li><a href="/courses/courses.html">Courses</a></li>
+        <li><a href="/maps/maps.html" style="color: #22c55e;">Maps</a></li>
+        <li><a href="/support/support.html">Support</a></li>
+        <li><a href="/contact/contact.html">Contact</a></li>
+      </ul>
+      <div class="main-hub" id="masterHubBtn"><span></span><span></span><span></span></div>
     </header>
 
-    <main class="page-section">
-        <h1>Find Our Facility</h1>
-        <p>Visit us at our main headquarters.</p>
-        <div class="map-responsive">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.4029283374157!2d-0.044800799999999995!3d51.6524588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761f007b696e2f%3A0x31bc4bf997245f1e!2sEnfield%20College%20Sports%20Centre!5e0!3m2!1sen!2suk!4v1776897850370!5m2!1sen!2suk" width="300" height="200" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="mobile-sidebar-panel" id="mobileSidebar">
+      <nav class="nav-container">
+        <a class="plate" href="../index.html">Home</a>
+        <a class="plate" href="/meet-the-team/meet-the-team.html">Meet the Team</a>
+        <a class="plate" href="/job-roles/job-roles.html">Job Roles</a>
+        <a class="plate" href="/apply/apply.html">Apply</a>
+        <a class="plate" href="/courses/courses.html">Courses</a>
+        <a class="plate" href="/maps/maps.html" style="color: #22c55e;">Maps</a>
+      </nav>
+    </div>
 
+    <main>
+      <section class="page-title-section">
+        <h2>HQ Infrastructure Coordinates</h2>
+        <p>Operational site geography and real-time perimeter monitoring mapping parameters.</p>
+      </section>
 
+      <div class="map-dashboard-grid">
         
-    </body>
+        <div class="info-column glass-panel">
+          <div class="meta-block-group">
+            
+            <div class="info-card">
+              <h3>HQ Street Address</h3>
+              <p>Enfield Innovation Hub, Sector 4<br>Innova Business Park, Waylands</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Post Code Matrix</h3>
+              <p class="highlight">EN3 4XF</p>
+            </div>
+
+            <div class="info-card">
+              <h3>Communications Line</h3>
+              <p class="highlight">+44 (0) 20 7946 0192</p>
+            </div>
+
+          </div>
+
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>All Nodes Operational</span>
+          </div>
+        </div>
+
+        <div class="map-column glass-panel">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.4029283374157!2d-0.044800799999999995!3d51.6524588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761f007b696e2f%3A0x31bc4bf997245f1e!2sEnfield%20College%20Sports%20Centre!5e0!3m2!1sen!2suk!4v1776897850370!5m2!1sen!2suk" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </main>
+
+    <footer>
+      <div class="social-row">
+        <a href="https://github.com" target="_blank" class="social-icon">GH // GITHUB</a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon">LN // LINKEDIN</a>
+        <a href="https://twitter.com" target="_blank" class="social-icon">X // TERMINAL</a>
+      </div>
+      <p>&copy; 2026 Enfield Dev LTD. Core career matrix indexes actively maintained.</p>
+    </footer>
+  </div>
+
+
+</body>
+
 </html>

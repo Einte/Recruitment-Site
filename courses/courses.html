@@ -1,82 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses | Careers Portal</title>
-    <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./courses.css">
+        <script src="../Global-bg.js/global-bg.js"></script>
+    <link rel="stylesheet" href="../themes.css/theme.css">
+    <link rel="stylesheet" href="../courses/courses.css">
+    <title>Training Frameworks | Enfield Dev LTD</title>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-            </ul>
-        </nav>
-    </header>
 
-   <main class="page-section">
-    <h1 class="glitch-text">Enhance Your Skills</h1>
-    <p class="terminal-subtitle">Available Training Modules</p>
-
-    <div class="courses-grid">
-        <div class="course-card">
-            <div class="course-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1663089792948-3e3fc4fff9a2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-            <div class="course-info">
-                <h3>Technical Training</h3>
-                <p>System Architecture & Hardware Maintenance</p>
-                <a href="#" class="btn-module">Access Module</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1663089724140-1949fe48cad4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-            <div class="course-info">
-                <h3>Safety Training</h3>
-                <p>Protocol Compliance & Risk Mitigation</p>
-                <a href="#" class="btn-module">Access Module</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1661573333384-34c8a1721de6?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-            <div class="course-info">
-                <h3>Leadership Training</h3>
-                <p>Strategic Management & Team Coordination</p>
-                <a href="" class="btn-module">Access Module</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1664301783969-80ab25f80759?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-            <div class="course-info">
-                <h3>Cyber Security</h3>
-                <p>Advanced Encryption & Network Defense</p>
-                <a href="" class="btn-module">Access Module</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1682126196145-d23f2022a8dd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-            <div class="course-info">
-                <h3>Data Analytics</h3>
-                <p>Statistical Modeling & Pattern Recognition</p>
-                <a href="" class="btn-module">Access Module</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1746286720965-cccf57e56c68?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-            <div class="course-info">
-                <h3>AI Ethics</h3>
-                <p>Neural Network Governance & Compliance</p>
-                <a href="" class="btn-module">Access Module</a>
-            </div>
-        </div>
+    <div class="bg-canvas" id="canvasContainer">
+        <div class="ambient-glow glow-green"></div>
+        <div class="ambient-glow glow-blue"></div>
+        <svg id="plexusSVG"></svg>
     </div>
-</main>
-<script src="courses.js"></script>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+ 
+    <div class="site-wrapper">
+        <header class="navbar glass-panel">
+            <div class="logo-text">ENFIELD <span class="logo-accent-box">DEV</span> <span
+                    class="logo-sub-tag">LTD</span></div>
+
+                <div class="theme-toggle-wrapper">
+                <span class="toggle-label" id="toggleLabel">Dark</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeCheckbox">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
+                <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
+                <li><a href="/apply/apply.html">Apply</a></li>
+                <li><a href="/courses/courses.html" style="color: #22c55e;">Courses</a></li>
+                <li><a href="/maps/maps.html">Maps</a></li>
+                <li><a href="/support/support.html">Support</a></li>
+                <li><a href="/contact/contact.html">Contact</a></li>
+            </ul>
+            <div class="main-hub" id="masterHubBtn"><span></span><span></span><span></span></div>
+        </header>
+
+        <div class="mobile-sidebar-panel" id="mobileSidebar">
+            <nav class="nav-container">
+                <a class="plate" href="../index.html">Home</a>
+                <a class="plate" href="/meet-the-team/meet-the-team.html">Meet the Team</a>
+                <a class="plate" href="/job-roles/job-roles.html">Job Roles</a>
+                <a class="plate" href="/apply/apply.html">Apply</a>
+            </nav>
+        </div>
+
+        <main>
+            <section class="header-block">
+                <h2>Corporate Training Frameworks</h2>
+                <p>Advance internal engineering telemetry profiles using authenticated Udemy learning modules.</p>
+            </section>
+
+            <div class="courses-grid">
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=500&q=80"
+                                alt="Networking">
+                            <span class="badge-overlay badge-active">Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: NET-201</span>
+                                <span>40 HOURS</span>
+                            </div>
+                            <h3>Cisco CCNA 200-301 Configuration</h3>
+                            <p class="course-summary">Master systematic router command architectures, multi-tier
+                                switching layouts, and network validation tracking metrics.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Network Infrastructure</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.udemy.com/course/cisco-ccna-200-301-complete-course-with-david-bombal/"
+                        target="_blank" class="cta-btn">Access Udemy Course</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80"
+                                alt="Web Development">
+                            <span class="badge-overlay badge-active">Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: DEV-404</span>
+                                <span>65 HOURS</span>
+                            </div>
+                            <h3>The Complete Full-Stack Blueprint</h3>
+                            <p class="course-summary">Build robust, secure backend applications featuring asynchronous
+                                endpoints, API integrations, and low-latency structures.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Software Development</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank"
+                        class="cta-btn">Access Udemy Course</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=500&q=80"
+                                alt="Databases">
+                            <span class="badge-overlay badge-pending">On Hold</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: DATA-302</span>
+                                <span>32 HOURS</span>
+                            </div>
+                            <h3>Ultimate SQL Schema Design</h3>
+                            <p class="course-summary">Deep dive into data normalization rules, multi-table index
+                                structures, query execution plans, and replication pipelines.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Database Administration</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="cta-btn disabled-btn">Allocations Full</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=500&q=80"
+                                alt="Cybersecurity">
+                            <span class="badge-overlay badge-active">Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: SEC-701</span>
+                                <span>35 HOURS</span>
+                            </div>
+                            <h3>CompTIA Security+ Systems Audit</h3>
+                            <p class="course-summary">Implement strong environmental access tokens, parse malicious
+                                traffic signatures, and run cryptographic safety profiles.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Systems Security</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.udemy.com/course/comptia-security-cert-sy0-701-total-course/" target="_blank"
+                        class="cta-btn">Access Udemy Course</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=500&q=80"
+                                alt="Cloud">
+                            <span class="badge-overlay badge-active">Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: CLD-503</span>
+                                <span>48 HOURS</span>
+                            </div>
+                            <h3>AWS Cloud Infrastructure Solutions</h3>
+                            <p class="course-summary">Architect highly-redundant storage pools, construct multi-region
+                                instance configurations, and configure virtual private clouds.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Cloud Architecture</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/"
+                        target="_blank" class="cta-btn">Access Udemy Course</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80"
+                                alt="Hardware Engineering">
+                            <span class="badge-overlay badge-pending">On Hold</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: HARD-102</span>
+                                <span>55 HOURS</span>
+                            </div>
+                            <h3>Microcontroller Bare Metal C Engineering</h3>
+                            <p class="course-summary">Program hardware register structures, manipulate clocks, and trace
+                                serial communications across I2C, SPI, and UART lines.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Embedded Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="cta-btn disabled-btn">Allocations Full</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=500&q=80"
+                                alt="Automation">
+                            <span class="badge-overlay badge-active">Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: AUTO-101</span>
+                                <span>38 HOURS</span>
+                            </div>
+                            <h3>Automating Core IT Systems Layouts</h3>
+                            <p class="course-summary">Write operational shell parsing logic and automation engines to
+                                handle large cross-platform filesystem structures dynamically.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Systems Automation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.udemy.com/course/automate/" target="_blank" class="cta-btn">Access Udemy
+                        Course</a>
+                </article>
+
+                <article class="course-card glass-panel">
+                    <div>
+                        <div class="image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=500&q=80"
+                                alt="Linux">
+                            <span class="badge-overlay badge-active">Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>ID: LINX-802</span>
+                                <span>28 HOURS</span>
+                            </div>
+                            <h3>Linux Mastery & System Initialization</h3>
+                            <p class="course-summary">Configure air-gapped system structures, user authentication rules,
+                                file permissions, and secure daemon initialization scripts.</p>
+                            <div class="metric-row">
+                                <span class="metric-label">Target Field</span>
+                                <span class="metric-value">Systems Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.udemy.com/course/linux-mastery/" target="_blank" class="cta-btn">Access Udemy
+                        Course</a>
+                </article>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-row">
+                <a href="https://github.com" target="_blank" class="social-icon">GH // GITHUB</a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon">LN // LINKEDIN</a>
+                <a href="https://twitter.com" target="_blank" class="social-icon">X // TERMINAL</a>
+            </div>
+            <p>&copy; 2026 Enfield Dev LTD. Core career matrix indexes actively maintained.</p>
+        </footer>
+    </div>
+
+
+
+
+
+     <script src="../courses/courses.js"></script>
 </body>
+
 </html>

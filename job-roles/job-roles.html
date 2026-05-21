@@ -1,40 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Roles | Careers Portal</title>
-    <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./job-roles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../Global-bg.js/global-bg.js"></script>
+  <link rel="stylesheet" href="../themes.css/theme.css">
+  <link rel="stylesheet" href="../job-roles/job-roles.css">
+  <title>Job Roles | Enfield Dev LTD</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="job-roles.html">Job Roles</a></li>
-                <li><a href="../apply/apply.html">Apply</a></li>
-            </ul>
-        </nav>
+
+  <svg id="plexusSVG"></svg>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <div class="site-wrapper">
+    <header class="navbar glass-panel">
+      <div class="logo-text">ENFIELD <span class="logo-accent-box">DEV</span> <span class="logo-sub-tag">LTD</span>
+      </div>
+      <div class="theme-toggle-wrapper">
+        <span class="toggle-label" id="toggleLabel">Dark</span>
+        <label class="theme-switch">
+          <input type="checkbox" id="themeCheckbox">
+          <span class="slider-toggle"></span>
+        </label>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
+        <li><a href="/job-roles/job-roles.html" style="color: #22c55e;">Job Roles</a></li>
+        <li><a href="/apply/apply.html">Apply</a></li>
+        <li><a href="/courses/courses.html">Courses</a></li>
+        <li><a href="/maps/maps.html">Maps</a></li>
+        <li><a href="/support/support.html">Support</a></li>
+        <li><a href="/contact/contact.html">Contact</a></li>
+      </ul>
+      <div class="main-hub" id="masterHubBtn"><span></span><span></span><span></span></div>
     </header>
 
-    <main class="page-section">
-        <h1>Available Positions</h1>
-        <div class="job-card">
-            <h3>Senior Mechanical Engineer</h3>
-            <p>Lead the design and maintenance of heavy machinery in our main facility.</p>
-            <span class="job-tag">Full-Time</span>
-        </div>
-        <div class="job-card">
-            <h3>Safety Compliance Officer</h3>
-            <p>Ensure all training and on-site operations meet international safety standards.</p>
-            <span class="job-tag">On-Site</span>
-        </div>
-        <div class="job-card">
-            <h3>Site Supervisor</h3>
-            <p>Manage daily workflows and coordinate between technical teams.</p>
-            <span class="job-tag">Management</span>
-        </div>
+    <div class="mobile-sidebar-panel" id="mobileSidebar">
+      <nav class="nav-container">
+        <a class="plate" href="../index.html">Home</a>
+        <a class="plate" href="/meet-the-team/meet-the-team.html">Meet the Team</a>
+        <a class="plate" href="/job-roles/job-roles.html" style="color: #22c55e;">Job Roles</a>
+        <a class="plate" href="/apply/apply.html">Apply</a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="page-title-section">
+        <h2>Active Infrastructure Vacancies</h2>
+        <p>Analyze operational pipeline criteria profiles and view open job market roles via Indeed.</p>
+      </section>
+
+      <div class="cards-grid">
+
+        <article class="job-card glass-panel">
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="status-pill status-open">Open</span>
+              <span class="role-code">NET-INFRA</span>
+            </div>
+            <h3>Network Engineer</h3>
+            <div class="salary-info">£42,000 - £55,000 / ANNUM</div>
+            <p class="job-desc">Responsible for scaling physical network backhaul arrays, configuring modular equipment
+              topologies, and mitigating data transmission line attenuation.</p>
+          </div>
+          <div class="card-bottom">
+            <div class="prereqs-box">
+              <h4>Prerequisites</h4>
+              <p>Cisco routing layout fluency and diagnostic framework inspection mapping skillsets.</p>
+            </div>
+            <a href="https://uk.indeed.com/q-network-engineer-jobs.html" target="_blank" class="action-btn">View on
+              Indeed</a>
+          </div>
+        </article>
+
+        <article class="job-card glass-panel">
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="status-pill status-open">Open</span>
+              <span class="role-code">SOFT-CORE</span>
+            </div>
+            <h3>Software Developer</h3>
+            <div class="salary-info">£45,000 - £60,000 / ANNUM</div>
+            <p class="job-desc">Engineers high-throughput microservice architectures, maintains internal pipeline
+              transit structures, and integrates operational backend elements.</p>
+          </div>
+          <div class="card-bottom">
+            <div class="prereqs-box">
+              <h4>Prerequisites</h4>
+              <p>Strong command syntax proficiency (Python/JS) and structured relational schema experience.</p>
+            </div>
+            <a href="https://uk.indeed.com/q-software-developer-jobs.html" target="_blank" class="action-btn">View on
+              Indeed</a>
+          </div>
+        </article>
+
+        <article class="job-card glass-panel">
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="status-pill status-closed">Closed</span>
+              <span class="role-code">DATA-POOL</span>
+            </div>
+            <h3>Database Administrator</h3>
+            <div class="salary-info">£40,000 - £52,000 / ANNUM</div>
+            <p class="job-desc">Oversees table allocation indexing configurations, maintains transaction records, and
+              administers schema layout replication sets.</p>
+          </div>
+          <div class="card-bottom">
+            <div class="prereqs-box">
+              <h4>Prerequisites</h4>
+              <p>Advanced SQL querying rules and index partition automation strategy management.</p>
+            </div>
+            <a href="#" class="action-btn disabled-btn">Position Suspended</a>
+          </div>
+        </article>
+
+        <article class="job-card glass-panel">
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="status-pill status-open">Open</span>
+              <span class="role-code">PERIMETER</span>
+            </div>
+            <h3>Systems Security Analyst</h3>
+            <div class="salary-info">£48,000 - £65,000 / ANNUM</div>
+            <p class="job-desc">Audits log parameters across air-gapped server environments, checks encryption
+              compliance, and actively screens anomalous threat logs.</p>
+          </div>
+          <div class="card-bottom">
+            <div class="prereqs-box">
+              <h4>Prerequisites</h4>
+              <p>Certified penetration framework familiarity and packet pattern analyzer knowledge base.</p>
+            </div>
+            <a href="https://uk.indeed.com/q-information-security-analyst-jobs.html" target="_blank"
+              class="action-btn">View on Indeed</a>
+          </div>
+        </article>
+
+        <article class="job-card glass-panel">
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="status-pill status-open">Open</span>
+              <span class="role-code">VIRTUAL-POOL</span>
+            </div>
+            <h3>Cloud Infrastructure Architect</h3>
+            <div class="salary-info">£65,000 - £85,000 / ANNUM</div>
+            <p class="job-desc">Designs high-availability host provisioning clusters, maps container configurations, and
+              coordinates storage area deployment nodes.</p>
+          </div>
+          <div class="card-bottom">
+            <div class="prereqs-box">
+              <h4>Prerequisites</h4>
+              <p>Infrastructure-as-Code declarative script control and virtualization layer mastery.</p>
+            </div>
+            <a href="https://uk.indeed.com/q-cloud-engineer-jobs.html" target="_blank" class="action-btn">View on
+              Indeed</a>
+          </div>
+        </article>
+
+        <article class="job-card glass-panel">
+          <div class="card-top">
+            <div class="card-meta-row">
+              <span class="status-pill status-closed">Closed</span>
+              <span class="role-code">HARDWARE-NODE</span>
+            </div>
+            <h3>Embedded Systems Engineer</h3>
+            <div class="salary-info">£50,000 - £68,000 / ANNUM</div>
+            <p class="job-desc">Flashes peripheral target microcontrollers, reviews circuit board logic lines under
+              trace inspection, and coordinates assembly-level device trees.</p>
+          </div>
+          <div class="card-bottom">
+            <div class="prereqs-box">
+              <h4>Prerequisites</h4>
+              <p>Low-level bare metal register tracking logic and hardware interface diagnostic capability.</p>
+            </div>
+            <a href="#" class="action-btn disabled-btn">Position Suspended</a>
+          </div>
+        </article>
+
+      </div>
     </main>
+
+    <footer>
+      <div class="social-row">
+        <a href="https://github.com" target="_blank" class="social-icon">GH // GITHUB</a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon">LN // LINKEDIN</a>
+        <a href="https://twitter.com" target="_blank" class="social-icon">X // TERMINAL</a>
+      </div>
+      <p>&copy; 2026 Enfield Dev LTD. Core career matrix indexes actively maintained.</p>
+    </footer>
+  </div>
+
+ 
 </body>
+
 </html>

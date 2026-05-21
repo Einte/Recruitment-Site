@@ -2,56 +2,132 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meet the Team | Careers Portal</title>
-    <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./meat-the-team.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../themes.css/theme.css">
+  <script src="../Global-bg.js/global-bg.js"></script>
+  <link rel="stylesheet" href="../meet-the-team/meat-the-team.css">
+  <title>Meet the Team | Enfield Dev LTD</title>
 </head>
-
 <body>
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="meet-the-team.html">Meet the Team</a></li>
-                <li><a href="../job-roles/job-roles.html">Job Roles</a></li>
-                <li><a href="../courses/courses.html">Courses</a></li>
-            </ul>
-        </nav>
+
+  <div class="bg-canvas">
+        <svg id="plexusSVG"></svg>
+    </div>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <div class="site-wrapper">
+    <header class="navbar glass-panel">
+      <div class="logo-text">ENFIELD <span class="logo-accent-box">DEV</span> <span class="logo-sub-tag">LTD</span>
+      </div>
+
+     <div class="theme-toggle-wrapper">
+                <span class="toggle-label" id="toggleLabel">Dark</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeCheckbox">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/meet-the-team/meet-the-team.html" style="color: #22c55e;">Meet the Team</a></li>
+        <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
+        <li><a href="/apply/apply.html">Apply</a></li>
+        <li><a href="/courses/courses.html">Courses</a></li>
+        <li><a href="/maps/maps.html">Maps</a></li>
+        <li><a href="/support/support.html">Support</a></li>
+        <li><a href="/contact/contact.html">Contact</a></li>
+      </ul>
+      <div class="main-hub" id="masterHubBtn"><span></span><span></span><span></span></div>
     </header>
 
-    <main class="page-section">
-        <h1>Meet Our Leaders</h1>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="https://images.unsplash.com/photo-1559718062-361155fad299?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D62..."
-                    alt="CEO">
-                <h3>Jane Smith</h3>
-                <p class="leader-title">Chief Executive Officer</p>
-                <p class="leader-bio">Jane oversees global operations and strategic vision, bringing 15+ years of
-                    experience in system architecture and executive leadership to the portal.</p>
+    <div class="mobile-sidebar-panel" id="mobileSidebar">
+      <nav class="nav-container">
+        <a class="plate" href="../index.html">Home</a>
+        <a class="plate" href="/meet-the-team/meet-the-team.html" style="color: #22c55e;">Meet the Team</a>
+        <a class="plate" href="/apply/apply.html">Apply</a>
+      </nav>
+    </div>
+
+    <main>
+      <div class="workspace-grid" style="display: grid; margin-top: 200px;">
+
+        <aside class="profile-speech-container">
+          <section class="telemetry-bubble-box glass-panel" id="telemetryBubble">
+            <div class="bubble-header">
+              <div class="bubble-avatar-frame">
+                <img id="bubbleImg"
+                  src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80"
+                  alt="Selected Node View">
+              </div>
+              <div class="bubble-meta">
+                <h1 id="bubbleName">Select Profile</h1>
+                <div id="bubbleRole" class="role-tag">ORBITAL SCANNER</div>
+                <div id="bubbleStatus" class="bubble-status status-away">
+                  <span class="status-dot"></span><span id="statusText">DORMANT</span>
+                </div>
+              </div>
+            </div>
+            <p id="bubbleDesc" class="bubble-body-text">
+              Select any of the operational profile balloons floating within the grid space matrix to interface directly
+              with active team log streams.
+            </p>
+            <div class="tech-footer" id="bubbleFooter">SYS // ID-NODE: UNSET</div>
+          </section>
+        </aside>
+
+        <section class="roster-workspace">
+          <div class="roster-header-section">
+            <h2>Core Infrastructure Operators</h2 
+            <p>Click on any personnel bubble vector node below to fetch profile credentials.</p>
+          </div>
+
+          <div class="scattered-roster-zone">
+            <div class="balloon-node-avatar node-pos-0" onclick="displayStaffNode(0, this)">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+                alt="Alex Mercer">
             </div>
 
-            <div class="team-member">
-                <img src="https://images.unsplash.com/photo-1648406062013-3db26e52767e?q=80&w=1369&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Manager">
-                <h3>Robert Chen</h3>
-                <p class="leader-title">Operations Manager</p>
-                <p class="leader-bio">Robert ensures seamless daily workflows and optimizes our biometric processing
-                    protocols to maintain 99.9% system uptime.</p>
+            <div class="balloon-node-avatar node-pos-1" onclick="displayStaffNode(1, this)">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+                alt="James Connor">
             </div>
 
-            <div class="team-member">
-                <img src="https://plus.unsplash.com/premium_photo-1771963212930-648746498df9?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D."
-                    alt="HR">
-                <h3>Sarah Johnson</h3>
-                <p class="leader-title">HR Director</p>
-                <p class="leader-bio">Sarah leads our global recruitment and employee wellness programs, focusing on
-                    building a diverse and highly-skilled technical workforce.</p>
+            <div class="balloon-node-avatar node-pos-2" onclick="displayStaffNode(2, this)">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"
+                alt="David Lightman">
             </div>
-        </div>
+
+            <div class="balloon-node-avatar node-pos-3" onclick="displayStaffNode(3, this)">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
+                alt="Elena Rostova">
+            </div>
+
+            <div class="balloon-node-avatar node-pos-4" onclick="displayStaffNode(4, this)">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
+                alt="Marcus Vance">
+            </div>
+
+            <div class="balloon-node-avatar node-pos-5" onclick="displayStaffNode(5, this)">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+                alt="Linus Carver">
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
+
+    <footer>
+      <p>&copy; 2026 Enfield Dev LTD. Infrastructure tracking nodes active.</p>
+    </footer>
+  </div>
+
+  <script src="../meet-the-team/meet-the-team.js">
+  
+  </script>
 </body>
 
 </html>
