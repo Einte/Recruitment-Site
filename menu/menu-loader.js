@@ -3,17 +3,22 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navAnchor = document.getElementById('universal-nav-anchor');
     if (navAnchor) {
-        fetch('/NewRecruitmentWebsite/header/header.html')
-            .then(response => response.text())
+        // Use window.location to build the absolute path
+        const basePath = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+        
+        // This will resolve to: https://einte.github.io/NewRecruitmentWebsite/header/header.html
+        fetch(window.location.origin + '/NewRecruitmentWebsite/header/header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Header not found');
+                return response.text();
+            })
             .then(data => {
                 navAnchor.innerHTML = data;
-                // CRITICAL: Tell the rest of the site the header is ready
                 document.dispatchEvent(new CustomEvent('headerLoaded'));
             })
             .catch(err => console.error('Menu Loader Error:', err));
     }
 });
-
 // Add this to your existing theme.js
 document.addEventListener("change", (e) => {
     if (e.target && e.target.id === 'themeCheckbox') {
