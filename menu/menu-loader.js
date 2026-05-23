@@ -3,15 +3,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navAnchor = document.getElementById('universal-nav-anchor');
     if (navAnchor) {
-        // Use window.location to build the absolute path
-        const basePath = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
-        
-        // This will resolve to: https://einte.github.io/NewRecruitmentWebsite/header/header.html
-        fetch(window.location.origin + '/NewRecruitmentWebsite/header/header.html')
-            .then(response => {
-                if (!response.ok) throw new Error('Header not found');
-                return response.text();
-            })
+        // Logic: 
+        // 1. If we are at root, use './header/header.html'
+        // 2. If we are in a subfolder (like /apply/), use '../header/header.html'
+        const isRoot = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+        const headerPath = isRoot ? './header/header.html' : '../header/header.html';
+
+        fetch(headerPath)
+            .then(response => response.text())
             .then(data => {
                 navAnchor.innerHTML = data;
                 document.dispatchEvent(new CustomEvent('headerLoaded'));
