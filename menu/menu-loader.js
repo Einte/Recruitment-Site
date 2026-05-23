@@ -3,14 +3,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navAnchor = document.getElementById('universal-nav-anchor');
     if (navAnchor) {
-        fetch('../header/header.html')
-            .then(response => response.text())
+        // If we are at the root, use ./header/header.html
+        // If we are in a subfolder, use ../header/header.html
+        const path = window.location.pathname.split('/').filter(Boolean).length > 1 
+            ? '../header/header.html' 
+            : './header/header.html';
+
+        fetch(path)
+            .then(res => res.text())
             .then(data => {
                 navAnchor.innerHTML = data;
-                // CRITICAL: Tell the rest of the site the header is ready
                 document.dispatchEvent(new CustomEvent('headerLoaded'));
-            })
-            .catch(err => console.error('Menu Loader Error:', err));
+            });
     }
 });
 
