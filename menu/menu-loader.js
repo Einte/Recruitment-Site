@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navAnchor = document.getElementById('universal-nav-anchor');
     if (navAnchor) {
-        fetch('/header/header.html')
+        fetch('../header/header.html')
             .then(response => response.text())
             .then(data => {
                 navAnchor.innerHTML = data;
