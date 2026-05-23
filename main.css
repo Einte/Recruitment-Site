@@ -530,7 +530,7 @@ main {
 }
 
 .input-group-container button:hover {
-    background: #22c55e;
+    background: var(--body-bg);
     color: var(--btn-text-hover);
 }
 
