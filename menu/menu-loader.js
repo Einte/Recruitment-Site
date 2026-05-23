@@ -3,21 +3,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navAnchor = document.getElementById('universal-nav-anchor');
     if (navAnchor) {
-        // Logic: 
-        // 1. If we are at root, use './header/header.html'
-        // 2. If we are in a subfolder (like /apply/), use '../header/header.html'
-        const isRoot = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
-        const headerPath = isRoot ? './header/header.html' : '../header/header.html';
-
-        fetch(headerPath)
+        fetch('./header/header.html')
             .then(response => response.text())
             .then(data => {
                 navAnchor.innerHTML = data;
+                // CRITICAL: Tell the rest of the site the header is ready
                 document.dispatchEvent(new CustomEvent('headerLoaded'));
             })
             .catch(err => console.error('Menu Loader Error:', err));
     }
 });
+
 // Add this to your existing theme.js
 document.addEventListener("change", (e) => {
     if (e.target && e.target.id === 'themeCheckbox') {
