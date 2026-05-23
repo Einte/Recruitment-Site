@@ -1,609 +1,373 @@
- * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #020604;
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-
-
-    /* ── BACKGROUND CANVAS ── */
-    .bg-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      background: linear-gradient(180deg, var(--canvas-gradient-start) 0%, var(--canvas-gradient-end) 100%);
-    }
-
-    .ambient-glow {
-      position: absolute;
-      border-radius: 100%;
-      opacity: 0.25;
-      filter: blur(100px);
-    }
-
-    .glow-green {
-      background: radial-gradient(circle, #22c55e 0%, transparent 70%);
-      width: 700px;
-      height: 700px;
-      bottom: -15%;
-      left: -15%;
-    }
-
-    .glow-blue {
-      background: radial-gradient(circle, #00d9ff 0%, transparent 70%);
-      width: 700px;
-      height: 700px;
-      top: -15%;
-      right: -15%;
-    }
-
-    #plexusSVG {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-    }
-
-    .site-wrapper {
-      position: relative;
-      z-index: 5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-    }
-
-    /* ── GLASS PANEL DEF ── */
-    .glass-panel {
-      position: relative;
-      z-index: 2;
-      background: rgba(4, 18, 10, 0.5) !important;
-      backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
-      -webkit-backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
-      border: 1px solid rgba(34, 197, 94, 0.35) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 30px;
-      height: 70px;
-      position: sticky;
-      top: 0;
-      z-index: 100000 !important;
-      border-top: none !important;
-      border-left: none !important;
-      border-right: none !important;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #ccffd8;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: #22c55e;
-      text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-    }
-
-    .main-hub,
-    .mobile-sidebar-panel,
-    .menu-overlay {
-      display: none;
-    }
-
-    /* ── LOGO BRANDING ── */
-        .logo-text {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            font-size: 1.15rem;
-            color: var(--text-main);
-            transition: color 0.1s;
-        }
-
-
-        .logo-accent-box {
-            background: linear-gradient(135deg, #00d9ff, #00b4d8);
-            color: #020805;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            box-shadow: 0 0 12px rgba(0, 217, 255, 0.4);
-        }
-
-   .logo-sub-tag {
-            font-size: 0.75rem;
-            color: var(--text-main);
-            border: 1px solid var(--glass-border);
-            padding: 1px 4px;
-            border-radius: 3px;
-            font-weight: 400;
-            transition: border-color 0.4s, color 0.4s;
-        }
-
-    /* ── MOBILE RESPONSIVE 3x3 DOT MENU SYSTEMS ── */
-    @media screen and (max-width: 768px) {
-      .nav-links {
-        display: none !important;
-      }
-
-      .navbar {
-        width: 100% !important;
-        padding: 0 20px !important;
-        flex-direction: row-reverse !important;
-      }
-
-      .menu-overlay {
-        display: block;
-        position: fixed;
-        inset: 0;
-        background: rgba(2, 8, 5, 0.4);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.4s ease;
-
-      }
-
-      .menu-overlay.is-open {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .main-hub {
-        display: grid;
-        width: 44px;
-        height: 44px;
-        border-radius: 8px;
-        background: rgba(4, 20, 12, 0.85);
-        border: 1.5px solid #00d9ff;
-        box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
-        grid-template-columns: repeat(3, 4px);
-        gap: 4px;
-        justify-content: center;
-        align-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease, transform 0.4s ease;
-        z-index: 100001 !important;
-      }
-
-      .main-hub.is-active {
-        border-color: #22c55e;
-        box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
-        transform: rotate(-90deg);
-      }
-
-      .main-hub span {
-        width: 4px;
-        height: 4px;
-        background-color: #00d9ff;
-        border-radius: 50%;
-      }
-
-      .main-hub.is-active span {
-        background-color: #22c55e;
-      }
-
-      .mobile-sidebar-panel {
-        display: flex;
-        position: fixed;
-        top: 70px;
-        left: -325px;
-        width: 320px;
-        height: calc(100vh - 70px);
-        background: rgba(3, 14, 8, 0.95) !important;
-        border: 1.5px solid rgba(34, 197, 94, 0.45) !important;
-        border-left: none !important;
-        transition: left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-        padding: 20px 0px 40px 0px;
-        flex-direction: column;
-        
-      }
-
-      .mobile-sidebar-panel.is-open {
-        left: 0 !important;
-      }
-
-      .nav-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        margin-top: 50px;
-        padding: 0 30px;
-      }
-
-      .plate {
-        text-decoration: none;
-        font-family: monospace;
-        color: #ccffd8;
-        font-size: 1.3rem;
-        font-weight: bold;
-      }
-    }
-
-    /* ── INTERACTIVE WORKSPACE GRID ── */
-    main {
-      flex: 1;
-      max-width: 1350px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 40px 20px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .workspace-grid {
-      display: grid;
-      grid-template-columns: 480px 1fr;
-      gap: 50px;
-      align-items: start;
-    }
-
-    /* ── LEFT SIDE: RE-ENLARGED SMS TEXT SPEECH BUBBLE PANEL ── */
-    .profile-speech-container {
-      position: sticky;
-      top: 110px;
-    }
-
-    .telemetry-bubble-box {
-      border-radius: 45px;
-      /* Highly rounded bubble architecture */
-      padding: 40px;
-      /* Increased padding to prevent shrinkage */
-      border-color: #0b2124 !important;
-      box-shadow: 0 0 35px rgba(0, 217, 255, 0.18), inset 0 0 20px rgba(0, 217, 255, 0.05);
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      position: relative;
-
-    }
-
-    /* Speech Bubble Message Tail Vector (Bottom Left Corner) */
-    .telemetry-bubble-box::after {
-      content: '';
-      position: absolute;
-      bottom: -22px;
-      left: 60px;
-      width: 0;
-      height: 0;
-      border-top: 22px solid rgba(4, 18, 10, 0.95);
-      border-right: 22px solid transparent;
-      border-left: 22px solid transparent;
-      z-index: 3;
-
-    }
-
-    .telemetry-bubble-box::before {
-      content: '';
-      position: absolute;
-      bottom: -26px;
-      left: 58px;
-      width: 0;
-      height: 0;
-      border-top: 25px solid #00d9ff;
-      border-right: 25px solid transparent;
-      border-left: 25px solid transparent;
-      z-index: 1;
-
-    }
-
-    .bubble-header {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      border-bottom: 1px dashed rgb(0, 0, 0);
-      padding-bottom: 22px;
-    }
-
-    .bubble-avatar-frame {
-      width: 105px;
-      /* Scaled up layout profile elements */
-      height: 105px;
-      border-radius: 50%;
-      border: 1px solid #ffffff;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgb(255, 255, 255);
-      flex-shrink: 0;
-    }
-
-    .bubble-avatar-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-
-    }
-
-    .bubble-meta h1 {
-      color: #00d9ff;
-      font-size: 1.85rem;
-      /* Expanded title element size */
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-
-    .bubble-meta .role-tag {
-      font-family: monospace;
-      color: #ffffff;
-      font-size: 13px;
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    /* Big Text-Message Styled Indicator Status Bubble Component */
-    .bubble-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: monospace;
-      font-size: 13px;
-      font-weight: 900;
-      padding: 8px 20px;
-      /* Enhanced pill scale to compensate for rounded corners */
-      border-radius: 50px;
-      /* Maximum roundness */
-      width: fit-content;
-      margin-top: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 12px rgb(255, 255, 255);
-    }
-
-    .status-dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-    }
-
-    .status-active {
-      background: rgba(255, 255, 255, 0.25);
-      color: #ffffff;
-      border: 2px solid #22c55e;
-    }
-
-    .status-active .status-dot {
-      background: #00ff5e;
-      box-shadow: 0 0 10px #22c55e;
-    }
-
-    .status-away {
-      background: rgb(0, 183, 255);
-      color: #ffffff;
-      border: 2px solid #eab308;
-    }
-
-    .status-away .status-dot {
-      background: #eab308;
-      box-shadow: 0 0 10px #eab308;
-    }
-
-    .bubble-body-text {
-      color: var(--text-main);
-      font-size: 16px;
-      line-height: 1.7;
-      min-height: 120px;
-    }
-
-    .tech-footer {
-      border-top: 1px dashed rgba(0, 217, 255, 0.2);
-      padding-top: 15px;
-      font-family: monospace;
-      color: var(--text-main);
-      font-size: 12px;
-    }
-
-    /* ── RIGHT SIDE: FLOATING BALLOON NODES (ORGANIC SCATTER PATTERN) ── */
-    .roster-header-section {
-      margin-bottom: 30px;
-    }
-
-    .roster-header-section h2 {
-      font-size: 2.2rem;
-      color: var(--text-main);
-      margin-bottom: 8px;
-    }
-
-    .roster-header-section p {
-      color: rgba(204, 255, 216, 0.75);
-      font-size: 15px;
-    }
-
-    /* Distributed Scattered Cloud Space Container */
-    .scattered-roster-zone {
-      position: relative;
-      min-height: 650px;
-      width: 100%;
-    }
-
-    /* Balloon Mode Circular Wrapper Element styles */
-    .balloon-node-avatar {
-      position: absolute;
-      width: 165px;
-      height: 165px;
-      border-radius: 50%;
-      cursor: pointer;
-
-      box-shadow: 0 5px 30px rgb(0, 213, 255), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-      transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      background-color: #ffffff;
-    }
-
-    .balloon-node-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    /* Hover & Selection states morphing into clean bright neon circles */
-    .balloon-node-avatar:hover {
-      transform: scale(1.12) translateY(-8px);
-      border-color: #00ff48;
-      box-shadow: 0 15px 35px rgba(0, 255, 60, 0.4);
-      z-index: 999;
-    }
-
-    .balloon-node-avatar.selected-active {
-      border-color: #00d9ff;
-      box-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
-      transform: scale(1.15);
-      z-index: 1000;
-    }
-
-    .balloon-node-avatar:hover img,
-    .balloon-node-avatar.selected-active img {
-      transform: scale(1.05);
-    }
-
-    /* Asymmetric Spatial Mapping to Fill Empty Gaps Creatively */
-    .node-pos-0 {
-      top: 15px;
-      left: 8%;
-    }
-
-    .node-pos-1 {
-      top: 90px;
-      left: 45%;
-    }
-
-    .node-pos-2 {
-      top: 25px;
-      right: 4%;
-    }
-
-    .node-pos-3 {
-      bottom: 60px;
-      left: 3%;
-    }
-
-    .node-pos-4 {
-      bottom: 180px;
-      left: 33%;
-    }
-
-    .node-pos-5 {
-      bottom: 40px;
-      right: 12%;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: auto;
-      position: relative;
-      z-index: 10;
-    }
-
-    footer p {
-      color: var(--text-main);
-      font-size: 13px;
-    }
-
-    /* Responsive adjustments */
-    @media screen and (max-width: 1100px) {
-      .node-pos-1 {
-        left: 45%;
-      }
-
-      .node-pos-4 {
-        left: 28%;
-      }
-    }
-
-    @media screen and (max-width: 968px) {
-      .workspace-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .profile-speech-container {
-        position: relative;
-        top: 0;
-        margin-bottom: 40px;
-      }
-
-      /* Invert Message Balloon Tail downwards on smaller tablet layouts */
-      .telemetry-bubble-box::after {
-        bottom: -20px;
-        left: 55px;
-        top: auto;
-        right: auto;
-        border-top: 20px solid rgba(4, 18, 10, 0.95);
-        border-left: 20px solid transparent;
-        border-right: 20px solid transparent;
-      }
-
-      .telemetry-bubble-box::before {
-        bottom: -23px;
-        left: 53px;
-        top: auto;
-        right: auto;
-        border-top: 22px solid #00d9ff;
-        border-left: 22px solid transparent;
-        border-right: 22px solid transparent;
-      }
-
-      .scattered-roster-zone {
-        min-height: 480px;
-
-      }
-
-      .balloon-node-avatar {
-        width: 140px;
-        height: 140px;
-      }
-    }
-
-    @media screen and (max-width: 560px) {
-      .scattered-roster-zone {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 25px;
-        justify-content: center;
-        min-height: auto;
-        padding: 20px 0;
-      }
-
-      .balloon-node-avatar {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        width: 125px;
-        height: 125px;
-
-      }
-    }
+/* ==========================================================================
+   1. GLOBAL ARCHITECTURE & SYSTEM RESET
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.site-wrapper {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* ==========================================================================
+   2. CORE WORKSPACE GLASS CONTAINER SPECIFICATIONS
+   ========================================================================== */
+.glass-panel {
+  position: relative;
+  z-index: 2;
+  background: rgba(4, 18, 10, 0.5) !important;
+  backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
+  border: 1px solid rgba(34, 197, 94, 0.35) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   4. INTERACTIVE WORKSPACE DESKTOP GRID LAYOUT
+   ========================================================================== */
+main {
+  flex: 1;
+  max-width: 1350px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+/* ==========================================================================
+   5. LEFT COLUMN: PROFILE TELEMETRY SPEECH BUBBLE
+   ========================================================================== */
+.profile-speech-container {
+  position: sticky;
+  top: 110px;
+}
+
+.telemetry-bubble-box {
+  border-radius: 45px;
+  padding: 40px;
+  border-color: #0b2124 !important;
+  box-shadow: 0 0 35px rgba(0, 217, 255, 0.18), inset 0 0 20px rgba(0, 217, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+}
+
+/* Speech Bubble Left Corner Geometric Vector Appendages */
+.telemetry-bubble-box::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 60px;
+  width: 0;
+  height: 0;
+  border-top: 22px solid rgba(4, 18, 10, 0.95);
+  border-right: 22px solid transparent;
+  border-left: 22px solid transparent;
+  z-index: 3;
+}
+
+.telemetry-bubble-box::before {
+  content: '';
+  position: absolute;
+  bottom: -26px;
+  left: 58px;
+  width: 0;
+  height: 0;
+  border-top: 25px solid #00d9ff;
+  border-right: 25px solid transparent;
+  border-left: 25px solid transparent;
+  z-index: 1;
+}
+
+.bubble-header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-bottom: 1px dashed rgb(0, 0, 0);
+  padding-bottom: 22px;
+}
+
+.bubble-avatar-frame {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgb(255, 255, 255);
+  flex-shrink: 0;
+}
+
+.bubble-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bubble-meta h1 {
+  color: #00d9ff;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.bubble-meta .role-tag {
+  font-family: monospace;
+  color: #ffffff;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.bubble-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 8px 20px;
+  border-radius: 50px;
+  width: fit-content;
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgb(255, 255, 255);
+}
+
+.status-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.status-active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border: 2px solid #22c55e;
+}
+
+.status-active .status-dot {
+  background: #00ff5e;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+.status-away {
+  background: rgb(0, 183, 255);
+  color: #ffffff;
+  border: 2px solid #eab308;
+}
+
+.status-away .status-dot {
+  background: #eab308;
+  box-shadow: 0 0 10px #eab308;
+}
+
+.bubble-body-text {
+  color: var(--text-main);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 120px;
+}
+
+.tech-footer {
+  border-top: 1px dashed rgba(0, 217, 255, 0.2);
+  padding-top: 15px;
+  font-family: monospace;
+  color: var(--text-main);
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   6. RIGHT COLUMN: ASYMMETRIC SPATIAL ROSTER MATRIX
+   ========================================================================== */
+.roster-header-section {
+  margin-bottom: 30px;
+}
+
+.roster-header-section h2 {
+  font-size: 2.2rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.roster-header-section p {
+  color: rgba(204, 255, 216, 0.75);
+  font-size: 15px;
+}
+
+.scattered-roster-zone {
+  position: relative;
+  min-height: 650px;
+  width: 100%;
+}
+
+.balloon-node-avatar {
+  position: absolute;
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 5px 30px rgb(0, 213, 255), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: #ffffff;
+}
+
+.balloon-node-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.balloon-node-avatar:hover {
+  transform: scale(1.12) translateY(-8px);
+  border-color: #00ff48;
+  box-shadow: 0 15px 35px rgba(0, 255, 60, 0.4);
+  z-index: 999;
+}
+
+.balloon-node-avatar.selected-active {
+  border-color: #00d9ff;
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.5);
+  transform: scale(1.15);
+  z-index: 1000;
+}
+
+.balloon-node-avatar:hover img,
+.balloon-node-avatar.selected-active img {
+  transform: scale(1.05);
+}
+
+/* ASYMMETRIC MAPPING ABSOLUTE COORDINATES */
+.node-pos-0 { top: 15px; left: 8%; }
+.node-pos-1 { top: 90px; left: 38%; }
+.node-pos-2 { top: 25px; right: 4%; }
+.node-pos-3 { bottom: 60px; left: 3%; }
+.node-pos-4 { bottom: 180px; left: 33%; }
+.node-pos-5 { bottom: 40px; right: 12%; }
+
+/* ==========================================================================
+   7. RUNTIME STABLE ISOLATED GLOBAL FOOTER
+   ========================================================================== */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+}
+
+footer p {
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   8. SYSTEM WORKSPACE RESPONSIVE RE-ALIGNMENT BREAKPOINTS
+   ========================================================================== */
+@media screen and (max-width: 1100px) {
+  .node-pos-1 { left: 45%; }
+  .node-pos-4 { left: 28%; }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none !important;
+  }
+  .navbar {
+    width: 100% !important;
+    padding: 0 20px !important;
+    flex-direction: row-reverse !important;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .profile-speech-container {
+    position: relative;
+    top: 0;
+    margin-bottom: 40px;
+  }
+
+  /* Invert Speech Bubble Corner Tail Positions On Vertical Screens */
+  .telemetry-bubble-box::after {
+    bottom: -20px;
+    left: 55px;
+    top: auto;
+    right: auto;
+    border-top: 20px solid rgba(4, 18, 10, 0.95);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+  }
+
+  .telemetry-bubble-box::before {
+    bottom: -23px;
+    left: 53px;
+    top: auto;
+    right: auto;
+    border-top: 22px solid #00d9ff;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+  }
+
+  .scattered-roster-zone {
+    min-height: 480px;
+  }
+
+  .balloon-node-avatar {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .scattered-roster-zone {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    min-height: auto;
+    padding: 20px 0;
+  }
+
+  .balloon-node-avatar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 125px;
+    height: 125px;
+  }
+}

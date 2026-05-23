@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../Global-bg.js/global-bg.js"></script>
-    <link rel="stylesheet" href="../themes.css/theme.css">
+    <link rel="stylesheet" href="../Theme/theme.css">
     <link rel="stylesheet" href="../apply/apply.css">
     <title>BioMetric Enrolment Station | Enfield Dev LTD</title>
 </head>
+
 <body>
- <svg id="plexusSVG"></svg>
+     <div id="universal-nav-anchor"></div>
+    <svg id="plexusSVG"></svg>
     <div class="congrats-modal-overlay" id="congratsOverlay">
         <div class="congrats-card glass-panel">
             <h2>Congrats! 🎉</h2>
@@ -20,33 +21,6 @@
     </div>
 
     <div class="site-wrapper">
-
-        <header class="navbar glass-panel">
-            <div class="logo-text">
-                ENFIELD <span class="logo-accent-box">DEV</span> <span class="logo-sub-tag">LTD</span>
-            </div>
-           
-            <div class="theme-toggle-wrapper">
-                <span class="toggle-label" id="toggleLabel">Dark</span>
-                <label class="theme-switch">
-                    <input type="checkbox" id="themeCheckbox">
-                    <span class="slider-toggle"></span>
-                </label>
-            </div>
-
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="/meet-the-team/meet-the-team.html">Meet the Team</a></li>
-                <li><a href="/job-roles/job-roles.html">Job Roles</a></li>
-                <li><a href="/apply/apply.html" class="active-link">Apply</a></li>
-                <li><a href="/courses/courses.html">Courses</a></li>
-                <li><a href="/maps/maps.html">Maps</a></li>
-                <li><a href="/support/support.html">Support</a></li>
-                <li><a href="/contact/contact.html">Contact</a></li>
-            </ul>
-
-        </header>
-
         <main>
 
             <div class="speech-bubble-wrapper">
@@ -81,18 +55,19 @@
                         <div class="camera-video-window" id="camWindow">
                             <div class="laser-scanner-line"></div>
                             <div class="cam-icon-indicator" id="camIcon">📷</div>
-                            <div class="cam-closed-overlay" id="camClosedMsg">CAMERA IDLE</div>
+                            <div class="cam-closed-overlay" id="camClosedMsg" id="photoTxt">CAMERA IDLE</div>
+
                             <video id="liveWebcam" autoplay playsinline muted></video>
+                            <img id="freezeFrameCapture" alt="Captured Biometric Frame"
+                                style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 4;">
                         </div>
 
-                        <button type="button" class="btn-console-action btn-start" id="startActionBtn">Start
-                            Scan</button>
+                        <canvas id="snapshotCanvas" width="400" height="400" style="display: none;"></canvas>
 
-                        <button type="button" class="btn-console-action btn-generate"
-                            id="generateActionBtn">Generate</button>
-
-                        <button type="button" class="btn-console-action btn-submit-app" id="submitApplicationBtn">Submit
-                            Application</button>
+                        <button type="button" class="btn-console-action btn-start" id="startActionBtn">Start Scan</button>
+                        
+                        <button type="button" class="btn-console-action btn-generate" id="generateActionBtn">Generate Data</button>
+                        <button type="button" class="btn-console-action btn-submit-app" id="submitApplicationBtn">Submit Application</button>
                     </div>
 
                     <form id="recruitmentForm" class="right-fields-matrix-column" onsubmit="event.preventDefault();">
@@ -169,12 +144,10 @@
         </footer>
     </div>
 
-  
-<script src="../apply/apply.js">
 
- 
-
-</script>
+    <script src="../apply/apply.js"></script>
+    <script src="../global-bg/global-bg.js"></script>
+<script src="../menu/menu-loader.js"></script>
 </body>
 
 </html>

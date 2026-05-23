@@ -1,509 +1,304 @@
-   * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ==========================================================================
+   1. GLOBAL ARCHITECTURE & SYSTEM RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
          
 body {
-            background-color: #020604;
-            color: var(--text-sub);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-      
-        /* Dark Mode Mobile Menu Support Rules */
-        .top-cover-slider-wrapper { height: 50vh; }
-        .terminal-grid { margin-top: 18vh; }
-        .team-avatar-row { justify-content: flex-start; }
-        .theme-toggle-wrapper { margin-right: 15px; }
+    background-color: var(--body-bg);
+    color: var(--text-sub);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
 
-        /* ── BACKGROUND CANVAS & PLEXUS ANIMATION ── */
-          .bg-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      background: linear-gradient(180deg, var(--canvas-gradient-start) 0%, var(--canvas-gradient-end) 100%);
+.site-wrapper {
+    position: relative;
+    z-index: 5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+/* ==========================================================================
+   2. REUSABLE SYSTEM GLASS CONTAINER SPECIFICATIONS
+   ========================================================================== */
+.glass-panel {
+    position: relative;
+    z-index: 2;
+    background: var(--glass-bg) !important; 
+    backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+    border: 1px solid var(--glass-border) !important; 
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+/* ==========================================================================
+   4. MAIN DISPLAY CONTROLLER & GRID ENGINE
+   ========================================================================== */
+main {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.header-block {
+    margin-bottom: 45px;
+}
+
+.header-block h2 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-main); 
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.header-block p {
+    color: var(--header-p);  
+    font-size: 16px;
+}
+
+/* ── CARDS FRAME MATRIX ── */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.course-card {
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--glass-bg); 
+    border: 1px solid var(--glass-border);
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #00d9ff !important;
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.18);
+}
+
+/* ==========================================================================
+   5. DECK COMPONENT ASSETS (MEDIA & METRICS)
+   ========================================================================== */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: #030f08;
+    overflow: hidden;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.course-card:hover .image-wrapper img {
+    transform: scale(1.08);
+}
+
+/* ── TELEMETRY BADGE PILLS ── */
+.badge-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 12px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.badge-active {
+    background: rgba(4, 12, 6, 0.85);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.badge-pending {
+    background: rgba(15, 10, 4, 0.85);
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+}
+
+/* ── CARD INFORMATION PACK ── */
+.card-content {
+    padding: 22px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(0, 217, 255, 0.85);
+}
+
+.course-card h3 {
+    font-size: 1.25rem;
+    color: var(--card-h3); 
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.course-summary {
+    color: var(--text-main); 
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.metric-row {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.metric-label {
+    color: var(--text-sub);
+    opacity: 0.8;
+}
+
+.metric-value {
+    color: var(--card-metric-val); 
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   6. ACTIONS & TARGET ANCHOR TRIGGERS
+   ========================================================================== */
+.cta-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: #020604;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 0 0 20px 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.course-card:hover .cta-btn {
+    filter: brightness(1.15);
+}
+
+.cta-btn.disabled-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    text-decoration: line-through;
+}
+
+/* ==========================================================================
+   7. RUNTIME STABLE ISOLATED GLOBAL FOOTER W/ METRIC SOCIAL PADS
+   ========================================================================== */
+footer {
+    border-top: 1px solid var(--glass-border);
+    background: var(--glass-bg); 
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    transition: background 0.4s ease;
+}
+
+.social-row {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 13px;
+    border: 1px solid var(--glass-border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--input-bg);
+    transition: all 0.2s ease;
+}
+
+.social-icon:hover {
+    color: #00d9ff;
+    border-color: #00d9ff;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+}
+
+footer p {
+    color: var(--text-main);
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   8. SYSTEM RESPONSIVE DECK BREAKPOINTS
+   ========================================================================== */
+@media screen and (max-width: 1200px) {
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
- #plexusSVG {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
+}
+
+@media screen and (max-width: 900px) {
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-        .ambient-glow {
-            position: absolute;
-            border-radius: 100%;
-            opacity: 0.25;
-            filter: blur(100px);
-        }
+    
+    .nav-links {
+        display: none !important;
+    }
 
-        .glow-green {
-            background: radial-gradient(circle, #22c55e 0%, transparent 70%);
-            width: 700px;
-            height: 700px;
-            bottom: -15%;
-            left: -15%;
-        }
+    .navbar {
+        width: 100% !important;
+        padding: 0 20px !important;
+        flex-direction: row-reverse !important;
+    }
+}
 
-        .glow-blue {
-            background: radial-gradient(circle, #00d9ff 0%, transparent 70%);
-            width: 700px;
-            height: 700px;
-            top: -15%;
-            right: -15%;
-        }
-
-      
-
-        .site-wrapper {
-            position: relative;
-            z-index: 5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: transparent;
-        }
-
-        /* ── GLASS PANEL LAYER DEFINITION ── */
-        .glass-panel {
-            position: relative;
-            z-index: 2;
-            background: var(--glass-bg) !important; /* FIXED: Was static background hex code override */
-            backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
-            -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
-            border: 1px solid var(--glass-border) !important; /* FIXED: Was static green border override */
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            transition: background 0.4s ease, border-color 0.4s ease;
-        }
-
-        
-        /* ── NAVIGATION MODULE ── */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 30px;
-            height: 70px;
-            position: sticky;
-            top: 0;
-            z-index: 100000 !important;
-            border-top: none !important;
-            border-left: none !important;
-            border-right: none !important;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #22c55e;
-            text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-        }
-
-        .main-hub,
-        .mobile-sidebar-panel,
-        .menu-overlay {
-            display: none;
-        }
-
-     /* ── LOGO BRANDING ── */
-        .logo-text {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            font-size: 1.15rem;
-            color: var(--text-main);
-            transition: color 0.1s;
-        }
-
-        .logo-accent-box {
-            background: linear-gradient(135deg, #00d9ff, #00b4d8);
-            color: #020805;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 900;
-        }
-
-        .logo-sub-tag {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            border: 1px solid var(--glass-border);
-            padding: 1px 4px;
-            border-radius: 3px;
-        }
-
-
-        /* ── MOBILE 3x3 DOME MENU HANDLERS ── */
-        @media screen and (max-width: 768px) {
-            .nav-links {
-                display: none !important;
-            }
-
-            .navbar {
-                width: 100% !important;
-                padding: 0 20px !important;
-                flex-direction: row-reverse !important;
-            }
-
-            .menu-overlay {
-                display: block;
-                position: fixed;
-                inset: 0;
-                background: rgba(2, 8, 5, 0.4);
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.4s ease;
-            }
-
-            .menu-overlay.is-open {
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .main-hub {
-                display: grid;
-                width: 44px;
-                height: 44px;
-                border-radius: 8px;
-                background: rgba(4, 20, 12, 0.85);
-                border: 1.5px solid #00d9ff;
-                box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
-                grid-template-columns: repeat(3, 4px);
-                gap: 4px;
-                justify-content: center;
-                align-content: center;
-                cursor: pointer;
-                transition: all 0.3s ease, transform 0.4s ease;
-                z-index: 100001 !important;
-            }
-
-            .main-hub.is-active {
-                border-color: #22c55e;
-                box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
-                transform: rotate(-90deg);
-            }
-
-            .main-hub span {
-                width: 4px;
-                height: 4px;
-                background-color: #00d9ff;
-                border-radius: 50%;
-            }
-
-            .main-hub.is-active span {
-                background-color: #22c55e;
-            }
-
-            .mobile-sidebar-panel {
-                display: flex;
-                position: fixed;
-                top: 70px;
-                left: -325px;
-                width: 320px;
-                height: calc(100vh - 70px);
-                background: rgba(3, 14, 8, 0.95) !important;
-                border: 1.5px solid rgba(34, 197, 94, 0.45) !important;
-                border-left: none !important;
-                transition: left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-                padding: 20px 0px 40px 0px;
-                flex-direction: column;
-                z-index: 99999 !important;
-            }
-
-            .mobile-sidebar-panel.is-open {
-                left: 0 !important;
-            }
-
-            .nav-container {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                width: 100%;
-                margin-top: 50px;
-                padding: 0 30px;
-            }
-
-            .plate {
-                text-decoration: none;
-                font-family: monospace;
-                color: var(--text-sub);
-                font-size: 1.3rem;
-                font-weight: bold;
-            }
-        }
-
-        /* ── MAIN CONTENT WORKSPACE ── */
-        main {
-            flex: 1;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .header-block {
-            margin-bottom: 45px;
-        }
-
-        .header-block h2 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: var(--text-main); /* FIXED: Was static white */
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .header-block p {
-            color: var(--header-p);  /* FIXED: Assigned to dynamic theme token */
-            font-size: 16px;
-        }
-
-        /* ── CARDS CONFIGURATION GRID ── */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-
-        .course-card {
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: var(--glass-bg); /* FIXED: Inherits the correct mode background dynamic flow */
-            border: 1px solid var(--glass-border);
-            transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: #00d9ff !important;
-            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.18);
-        }
-
-        /* Card Image Dynamic Container Space */
-        .image-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            background-color: #030f08;
-            overflow: hidden;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
-        }
-
-        .course-card:hover .image-wrapper img {
-            transform: scale(1.08);
-        }
-
-        /* Status Pill Overlays */
-        .badge-overlay {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-family: monospace;
-            font-size: 11px;
-            font-weight: 900;
-            padding: 4px 12px;
-            border-radius: 30px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .badge-active {
-            background: rgba(4, 12, 6, 0.85);
-            color: #22c55e;
-            border: 1px solid #22c55e;
-        }
-
-        .badge-pending {
-            background: rgba(15, 10, 4, 0.85);
-            color: #f59e0b;
-            border: 1px solid #f59e0b;
-        }
-
-        /* Card Data Body */
-        .card-content {
-            padding: 22px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            font-family: monospace;
-            font-size: 11px;
-            color: rgba(0, 217, 255, 0.85);
-        }
-
-        body.light-mode .card-meta {
-            color: #0369a1;
-        }
-
-        .course-card h3 {
-            font-size: 1.25rem;
-            color: var(--card-h3); /* FIXED: Linked to the contextual header token map */
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .course-summary {
-            color: var(--card-text-summary); /* FIXED: Linked to dynamic token */
-            font-size: 13.5px;
-            line-height: 1.5;
-        }
-
-        /* Target Metric Footer Block inside Card */
-        .metric-row {
-            margin-top: auto;
-            padding-top: 12px;
-            border-top: 1px dashed var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: monospace;
-            font-size: 12px;
-        }
-
-        .metric-label {
-            color: var(--text-sub);
-            opacity: 0.8;
-        }
-
-        .metric-value {
-            color: var(--card-metric-val); /* FIXED: Map to contextual tone token */
-            font-weight: bold;
-        }
-
-        /* Action Links targeting actual Udemy Frameworks */
-        .cta-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            color: #020604;
-            font-weight: 800;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 0 0 20px 20px;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
-        }
-
-        .course-card:hover .cta-btn {
-            filter: brightness(1.15);
-        }
-
-        .cta-btn.disabled-btn {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            pointer-events: none;
-            text-decoration: line-through;
-        }
-
-        /* ── FOOTER ROW AND TECHNICAL SOCIAL LINKS ── */
-        footer {
-            border-top: 1px solid var(--glass-border);
-            background: var(--glass-bg); /* FIXED: Routed to dynamic panel token variables */
-            padding: 30px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            transition: background 0.4s ease;
-        }
-
-        .social-row {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-icon {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-family: monospace;
-            font-size: 13px;
-            border: 1px solid var(--glass-border);
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: var(--input-bg);
-            transition: all 0.2s ease;
-        }
-
-        .social-icon:hover {
-            color: #00d9ff;
-            border-color: #00d9ff;
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
-        }
-
-        body.light-mode .social-icon:hover {
-            color: #0369a1;
-            border-color: #0369a1;
-            box-shadow: 0 0 10px rgba(3, 105, 161, 0.2);
-        }
-
-        footer p {
-            color: var(--text-sub);
-            font-size: 13px;
-        }
-
-        /* Responsive Grid Breakpoints */
-        @media screen and (max-width: 1200px) {
-            .courses-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media screen and (max-width: 900px) {
-            .courses-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media screen and (max-width: 580px) {
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+@media screen and (max-width: 580px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+}

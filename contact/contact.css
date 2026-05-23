@@ -1,415 +1,262 @@
- * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-     body {
-            background-color: #020604;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+/* ==========================================================================
+   1. GLOBAL ARCHITECTURE & SYSTEM RESET
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* ── BACKGROUND CANVAS & PLEXUS ANIMATION ── */
-    .bg-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      background: linear-gradient(180deg, var(--canvas-gradient-start) 0%, var(--canvas-gradient-end) 100%);
-    }
+body {
+  background-color: #020604;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
 
-    .ambient-glow {
-      position: absolute;
-      border-radius: 100%;
-      opacity: 0.25;
-      filter: blur(100px);
-    }
+.site-wrapper {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
 
-    .glow-green {
-      background: radial-gradient(circle, #22c55e 0%, transparent 70%);
-      width: 700px;
-      height: 700px;
-      bottom: -15%;
-      left: -15%;
-    }
-
-    .glow-blue {
-      background: radial-gradient(circle, #00d9ff 0%, transparent 70%);
-      width: 700px;
-      height: 700px;
-      top: -15%;
-      right: -15%;
-    }
-
-   
-
-    .site-wrapper {
-      position: relative;
-      z-index: 5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-    }
-
-    /* ── GLASS PANEL PROPERTIES ── */
-    .glass-panel {
-      position: relative;
-      background: var(--glass-bg) !important;
-      backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
-      -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
-      border: 1px solid var(--glass-border) !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    /* ── NAVIGATION BAR ── */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 30px;
-      height: 70px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-top: none !important;
-      border-left: none !important;
-      border-right: none !important;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-sub);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: #22c55e;
-      text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-    }
-
-    .main-hub,
-    .mobile-sidebar-panel,
-    .menu-overlay {
-      display: none;
-    }
-
-  /* ── LOGO BRANDING ── */
-        .logo-text {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            font-size: 1.15rem;
-            color: var(--text-main);
-            transition: color 0.1s;
-        }
-
-    body.light-mode .logo-text { color: #0f172a !important; }
-
-    .logo-accent-box {
-      background: linear-gradient(135deg, #00d9ff, #00b4d8);
-      color: #020805;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 900;
-    }
-
-    .logo-sub-tag {
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      border: 1px solid var(--glass-border);
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
+/* ==========================================================================
+   2. REUSABLE SYSTEM GLASS CONTAINER SPECIFICATIONS
+   ========================================================================== */
+.glass-panel {
+  position: relative;
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
 
 
+/* ==========================================================================
+   4. CENTERED TRANSMISSION CONSOLE CONTENT CONTAINER
+   ========================================================================== */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  z-index: 10;
+}
 
+.transmission-console {
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 
-    /* ── MOBILE NAVBAR SIDEPANEL NAVIGATION LAYER ── */
-    @media screen and (max-width: 768px) {
-      .nav-links { display: none !important; }
-      .navbar { width: 100% !important; padding: 0 20px !important; flex-direction: row-reverse !important; }
-      
-      .menu-overlay {
-        display: block; 
-        position: fixed; 
-        inset: 0; 
-        background: rgba(2, 8, 5, 0.6);
-        opacity: 0; 
-        pointer-events: none; 
-        transition: opacity 0.4s ease; 
-        z-index: 150;
-      }
-      .menu-overlay.is-open { opacity: 1; pointer-events: auto; }
-      
-      .main-hub {
-        display: grid; 
-        width: 44px; 
-        height: 44px; 
-        border-radius: 8px; 
-        background: var(--glass-bg);
-        border: 1.5px solid #00d9ff; 
-        box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
-        grid-template-columns: repeat(3, 4px); 
-        gap: 4px; 
-        justify-content: center; 
-        align-content: center;
-        cursor: pointer; 
-        transition: all 0.3s ease, transform 0.4s ease; 
-        z-index: 500;
-      }
-      .main-hub.is-active { border-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); transform: rotate(-90deg); }
-      .main-hub span { width: 4px; height: 4px; background-color: #00d9ff; border-radius: 50%; }
-      .main-hub.is-active span { background-color: #22c55e; }
-      
-      .mobile-sidebar-panel {
-        display: flex; 
-        position: fixed; 
-        top: 70px; 
-        left: -325px; 
-        width: 320px; 
-        height: calc(100vh - 70px);
-        background: var(--body-bg) !important; 
-        border: 1.5px solid var(--glass-border) !important;
-        border-left: none !important; 
-        transition: left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-        padding: 40px 0px; 
-        flex-direction: column; 
-        z-index: 200;
-      }
-      .mobile-sidebar-panel.is-open { left: 0 !important; }
-      .nav-container { display: flex; flex-direction: column; gap: 24px; width: 100%; margin-top: 30px; padding: 0 35px; }
-      
-      .plate { 
-        text-decoration: none; 
-        font-family: monospace; 
-        color: var(--text-sub); 
-        font-size: 1.3rem; 
-        font-weight: bold;
-        transition: all 0.2s ease;
-        padding: 5px 0;
-      }
-      .plate:hover {
-        color: #22c55e;
-        text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-        transform: translateX(4px);
-      }
-    }
-    /* ── FOOTER STYLE WITH INTEGRATED TECHNICAL SOCIALS ── */
-  footer {
-    border-top: 1px solid rgba(34, 197, 94, 0.2);
-    background: rgba(2, 8, 4, 0.8);
-    padding: 30px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+.console-header h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.console-header p {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   5. INTERACTIVE FIELD STRUCTURAL CELLS
+   ========================================================================== */
+.console-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.console-field label {
+  font-family: monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #00d9ff;
+  letter-spacing: 0.5px;
+}
+
+.console-field input,
+.console-field textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border); 
+  border-radius: 12px;
+  padding: 16px;
+  color: var(--input-text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.console-field input:focus,
+.console-field textarea:focus {
+  border-color: #00d9ff;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.transmit-btn {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #020604;
+  border: none;
+  font-weight: 800;
+  padding: 16px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
+  margin-top: 10px;
+}
+
+.transmit-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 6px 22px rgba(34, 197, 94, 0.45);
+}
+
+/* ==========================================================================
+   6. COMPLETION STATUS OVERLAY NOTIFICATION POPUP
+   ========================================================================== */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 4, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 35px 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  max-width: 420px;
+  width: 90%;
+  transform: scale(0.85);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popup-overlay.show .popup-card {
+  transform: scale(1);
+}
+
+.popup-card h4 {
+  font-size: 1.5rem;
+  color: #22c55e;
+  margin-bottom: 12px;
+}
+
+.popup-card p {
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.popup-close-btn {
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 12px 28px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.popup-close-btn:hover {
+  border-color: #00d9ff;
+  color: #00d9ff;
+}
+
+/* ==========================================================================
+   7. RUNTIME STABLE ISOLATED GLOBAL FOOTER W/ METRIC SOCIAL PADS
+   ========================================================================== */
+footer {
+  border-top: 1px solid rgba(34, 197, 94, 0.2);
+  background: rgba(2, 8, 4, 0.8);
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-row {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  color: #ccffd8;
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 13px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(4, 18, 10, 0.4);
+  transition: all 0.2s ease;
+}
+
+.social-icon:hover {
+  color: #00d9ff;
+  border-color: #00d9ff;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+}
+
+footer p {
+  color: #a3c2ae;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   8. SYSTEM RESPONSIVE DISPLAY BREAKPOINTS
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  .nav-links { 
+    display: none !important; 
   }
-
-  .social-row {
-    display: flex;
-    gap: 20px;
+  
+  .navbar { 
+    width: 100% !important; 
+    padding: 0 20px !important; 
+    flex-direction: row-reverse !important; 
   }
-
-  .social-icon {
-    color: #ccffd8;
-    text-decoration: none;
-    font-family: monospace;
-    font-size: 13px;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    padding: 6px 14px;
-    border-radius: 20px;
-    background: rgba(4, 18, 10, 0.4);
-    transition: all 0.2s ease;
-  }
-
-  .social-icon:hover {
-    color: #00d9ff;
-    border-color: #00d9ff;
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
-  }
-
-  footer p {
-    color: #a3c2ae;
-    font-size: 13px;
-  }
-
-    /* ── CENTERED CONTACT MAIN FRAME WORKSPACE ── */
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      z-index: 10;
-    }
-
-    .transmission-console {
-      border-radius: 24px;
-      padding: 40px;
-      width: 100%;
-      max-width: 550px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    .console-header h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .console-header p {
-      font-size: 14px;
-      color: var(--text-sub);
-      margin-top: 6px;
-      opacity: 0.85;
-    }
-
-    .console-field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .console-field label {
-      font-family: monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      color: #00d9ff;
-      letter-spacing: 0.5px;
-    }
-
-    body.light-mode .console-field label { color: #0369a1; }
-
-    .console-field input,
-    .console-field textarea {
-      background: var(--input-bg);
-      border: 1px solid var(--glass-border); 
-      border-radius: 12px;
-      padding: 16px;
-      color: var(--input-text);
-      font-size: 14px;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    .console-field input:focus,
-    .console-field textarea:focus {
-      border-color: #00d9ff;
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    .transmit-btn {
-      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-      color: #020604;
-      border: none;
-      font-weight: 800;
-      padding: 16px;
-      border-radius: 30px;
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.25);
-      margin-top: 10px;
-    }
-
-    .transmit-btn:hover {
-      filter: brightness(1.15);
-      box-shadow: 0 6px 22px rgba(34, 197, 94, 0.45);
-    }
-
-    /* ── NOTIFICATION POPUP MODAL SCREEN OVERLAYS ── */
-    .popup-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 4, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .popup-overlay.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .popup-card {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      padding: 35px 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      max-width: 420px;
-      width: 90%;
-      transform: scale(0.85);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .popup-overlay.show .popup-card {
-      transform: scale(1);
-    }
-
-    .popup-card h4 {
-      font-size: 1.5rem;
-      color: #22c55e;
-      margin-bottom: 12px;
-    }
-
-    body.light-mode .popup-card h4 { color: #16a34a; }
-
-    .popup-card p {
-      font-size: 14px;
-      color: var(--text-main);
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
-
-    .popup-close-btn {
-      background: var(--input-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-main);
-      padding: 12px 28px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: bold;
-      text-transform: uppercase;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .popup-close-btn:hover {
-      border-color: #00d9ff;
-      color: #00d9ff;
-    }
+}

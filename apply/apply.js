@@ -1,81 +1,168 @@
-   // ── LIVE MEDIA HARDWARE CONTROLLER (STATE WORKFLOW MACHINE) ──
-const liveVideo = document.getElementById('liveWebcam');
-const camIcon = document.getElementById('camIcon');
-const startScanBtn = document.getElementById('startActionBtn');
-const snapshotCanvas = document.getElementById('snapshotCanvas');
-const freezeFrameImg = document.getElementById('freezeFrameCapture');
-const photoTxtPlaceholder = document.getElementById('photoTxt');
-const camClosedMsg = document.getElementById('camClosedMsg');
-const hardwareCol = document.getElementById('hardwareCol');
-
-let cameraStream = null;
-let currentWorkflowState = "IDLE"; // States: IDLE, STREAMING, SCANNING
-
-async function engageCameraHardware() {
-    try {
-        camClosedMsg.style.display = "none";
-        cameraStream = await navigator.mediaDevices.getUserMedia({ video: { width: 400, height: 400 }, audio: false });
-        liveVideo.srcObject = cameraStream;
-        liveVideo.style.display = "block";
-        camIcon.style.display = "none";
-
-        // Advance state tracker UI indicators
-        currentWorkflowState = "STREAMING";
-        startScanBtn.textContent = "Take a Photo";
-        startScanBtn.classList.add('snap-mode');
-    } catch (err) {
-        console.error("Camera channel access error: ", err);
-        camClosedMsg.style.display = "flex";
-        camClosedMsg.textContent = "HARDWARE ERROR";
+// ==========================================
+// 1. BULLETPROOF THEME ENGINE (Anti-Flash)
+// ==========================================
+function applyInitialTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+    } else {
+        document.body.classList.remove("light-mode");
     }
 }
 
-if (startScanBtn) {
-    startScanBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentWorkflowState === "IDLE") {
-            engageCameraHardware();
-        }
-        else if (currentWorkflowState === "STREAMING") {
-            currentWorkflowState = "SCANNING";
-            startScanBtn.textContent = "Scanning...";
-            startScanBtn.disabled = true;
-            hardwareCol.classList.add('is-active', 'is-scanning');
-
-            // Hold scan line matrix sweep for exactly 1.5 seconds before shutter triggers
-            setTimeout(() => {
-                if (cameraStream && cameraStream.active && liveVideo.srcObject) {
-                    const ctx = snapshotCanvas.getContext('2d');
-                    ctx.drawImage(liveVideo, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
-
-                    const dataUrl = snapshotCanvas.toDataURL('image/png');
-                    freezeFrameImg.src = dataUrl;
-
-                    photoTxtPlaceholder.style.display = 'none';
-                    freezeFrameImg.style.display = 'block';
-
-                    // Disconnect streams channels safely
-                    cameraStream.getTracks().forEach(track => track.stop());
-                    liveVideo.style.display = "none";
-                    camIcon.style.display = "block";
-
-                    camClosedMsg.style.display = "flex";
-                    camClosedMsg.textContent = "SNAPSHOT RECORDED";
-                    camClosedMsg.style.color = "#00d9ff";
-                }
-
-                // Reset button states back to idle workflow stack
-                currentWorkflowState = "IDLE";
-                startScanBtn.textContent = "Start Scan";
-                startScanBtn.classList.remove('snap-mode');
-                startScanBtn.disabled = false;
-                hardwareCol.classList.remove('is-scanning');
-            }, 1500);
-        }
-    });
+// Check for body structural existence immediately or delay to DOM tree mount
+if (document.body) {
+    applyInitialTheme();
+} else {
+    document.addEventListener("DOMContentLoaded", applyInitialTheme);
 }
 
-// ── AUTO CONTROL FILL SELECTORS ──
+// Sync interactive theme switch behaviors if explicitly on page context
+document.addEventListener("DOMContentLoaded", () => {
+    const themeCheckbox = document.getElementById("themeCheckbox");
+    const toggleLabel = document.getElementById("toggleLabel");
+
+    if (!themeCheckbox) return;
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+        themeCheckbox.checked = true;
+        if (toggleLabel) toggleLabel.textContent = "Light";
+    } else {
+        themeCheckbox.checked = false;
+        if (toggleLabel) toggleLabel.textContent = "Dark";
+    }
+
+    themeCheckbox.addEventListener("change", () => {
+        if (themeCheckbox.checked) {
+            document.body.classList.add("light-mode");
+            if (toggleLabel) toggleLabel.textContent = "Light";
+            localStorage.setItem("theme", "light");
+        } else {
+            document.body.classList.remove("light-mode");
+            if (toggleLabel) toggleLabel.textContent = "Dark";
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+
+window.onload = function() {
+    // --- 1. ELEMENTS ---
+    const genBtn = document.getElementById('preview-btn');
+    const fileInput = document.getElementById('file-input');
+    const inputs = document.querySelectorAll('#application-form input[required]');
+    const scanBtn = document.getElementById('scan-button');
+    const video = document.getElementById('webcam-view');
+    const status = document.getElementById('status-text');
+    const laser = document.getElementById('laser');
+    const photo = document.getElementById('user-photo');
+    const canvas = document.getElementById('capture-canvas');
+    
+    let fileImageData = null;
+
+    // --- 2. FORM VALIDATION ---
+    function checkForm() {
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (!input.value.trim()) allFilled = false;
+        });
+        genBtn.disabled = !allFilled;
+        genBtn.style.opacity = allFilled ? "1" : "0.3";
+        genBtn.style.cursor = allFilled ? "pointer" : "not-allowed";
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('input', checkForm);
+    });
+
+    // --- 3. FILE PREVIEW ---
+    fileInput.onchange = function() {
+        const zoneText = document.getElementById('file-display-name');
+        const zone = document.getElementById('file-preview-zone');
+        
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            zoneText.innerText = "READY: " + file.name;
+            zoneText.style.color = "#38bdf8";
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                fileImageData = e.target.result;
+                zone.style.backgroundImage = `url(${fileImageData})`;
+                zone.style.backgroundSize = 'contain';
+                zone.style.backgroundRepeat = 'no-repeat';
+                zone.style.backgroundPosition = 'center';
+            };
+            reader.readAsDataURL(file); 
+        }
+    };
+
+    // --- 4. CAMERA SCAN ---
+    scanBtn.onclick = async function() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+            status.innerText = "SYSTEM: SCANNING BIOMETRICS...";
+            laser.style.display = "block";
+
+            setTimeout(() => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                photo.src = canvas.toDataURL('image/png');
+                
+                laser.style.display = "none";
+                status.innerText = "SYSTEM: VERIFIED";
+                status.style.color = "#10b981";
+                
+                const badge = document.getElementById('badge');
+                if(badge) {
+                    badge.innerText = "VERIFIED";
+                    badge.className = "verify-badge unlocked";
+                }
+                
+                stream.getTracks().forEach(track => track.stop());
+            }, 3000); 
+        } catch (error) {
+            status.innerText = "ERROR: CAMERA BLOCKED";
+            status.style.color = "#ef4444";
+        }
+    };
+
+    // --- 5. GENERATE CARD LOGIC ---
+    genBtn.onclick = function() {
+        // Sync User Info
+        const first = document.getElementById('first-name-field').value;
+        const last = document.getElementById('last-name-field').value;
+        const email = document.getElementById('email-field').value;
+
+        document.getElementById('preview-name').innerText = `${first} ${last}`.toUpperCase();
+        document.getElementById('preview-email').innerText = email;
+
+        // Sync Document Data to Card
+        const cardThumb = document.getElementById('card-file-visual');
+        const cardFileNameDisplay = document.getElementById('preview-file');
+
+        if (fileInput.files.length > 0 && fileImageData) {
+            // Update the small image on the card
+            cardThumb.style.display = "block";
+            cardThumb.style.backgroundImage = `url(${fileImageData})`;
+            cardThumb.style.backgroundSize = "cover";
+            
+            // Update the file name text
+            cardFileNameDisplay.innerText = fileInput.files[0].name;
+            cardFileNameDisplay.style.color = "#38bdf8";
+        }
+        
+        // Scroll to the card preview
+        document.getElementById('card-preview-section').scrollIntoView({ behavior: 'smooth' });
+    };
+};
+
+// ==========================================
+// 3. AUTO CONTROL FILL TRACK ROUTERS
+// ==========================================
 function syncJobCode(jobTitle) {
     const jobCodeInput = document.getElementById('inJobCode');
     const jobRefInput = document.getElementById('inJobRef');
@@ -103,7 +190,9 @@ function updateFileLabel(input) {
     }
 }
 
-// ── GENERATE STATUS PRINTER ENGINE ──
+// ==========================================
+// 4. GENERATE STATUS PRINTER COMPILATION ENGINE
+// ==========================================
 const generateBtn = document.getElementById('generateActionBtn');
 const statusBoxPane = document.getElementById('statusBoxPane');
 
@@ -133,7 +222,9 @@ if (generateBtn && statusBoxPane) {
     });
 }
 
-// ── FAST VIEWPORT CELEBRATION SPRINKLE ENGINE ──
+// ==========================================
+// 5. VIEWPORT SUBMISSION MODAL & CELEBRATION ENGINE
+// ==========================================
 const submitAppBtn = document.getElementById('submitApplicationBtn');
 const congratsOverlay = document.getElementById('congratsOverlay');
 let particleTimerInterval = null;
@@ -181,7 +272,9 @@ function dismissCelebrationModal() {
     clearInterval(particleTimerInterval);
 }
 
-// ── CONTACT MODULE EXECUTION TRANSMISSION FORM ──
+// ==========================================
+// 6. CONTACT MODULE TRANSMISSION HANDLERS
+// ==========================================
 function handleMessageTransmission(event) {
     event.preventDefault();
     const popup = document.getElementById('transmissionSuccessPopup');
