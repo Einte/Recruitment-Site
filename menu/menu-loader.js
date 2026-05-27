@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const domePath = window.location.pathname.split('/').filter(Boolean).length > 1
                         ? '../the-dome-menu/index.html'
-                        : '/NewRecruitmentWebsite/header/html.html';
+                        : './the-dome-menu/index.html';
 
                     fetch(domePath)
                         .then(res => res.text())
