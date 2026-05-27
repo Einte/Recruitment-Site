@@ -64,6 +64,7 @@ main {
 }
 
 .speech-bubble-card {
+    margin-top: 50px;
     border-radius: 24px;
     padding: 40px;
     position: relative;
@@ -352,6 +353,9 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+}
+.field-inline-row {
+    color: var(--text-main);
 }
 
 .field-cell {

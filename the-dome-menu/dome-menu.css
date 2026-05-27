@@ -1,0 +1,210 @@
+.dome-menu-wrapper {
+
+    position: fixed;
+
+    top: 8px;
+    left: 8px;
+
+    z-index: 999999;
+
+    display: none;
+
+}
+
+@media (max-width: 900px) {
+
+    .dome-menu-wrapper {
+        display: block;
+    }
+
+}
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+}
+@media (max-width: 900px) {
+
+    .theme-toggle-wrapper {
+        display: none;
+    }
+
+}
+
+/* =========================
+   MENU ICON
+========================= */
+
+.dome-toggle {
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: rgba(0,0,0,0.65);
+
+    backdrop-filter: blur(12px);
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 4px;
+
+    padding: 8px;
+position: relative;
+
+z-index: 9999999;
+    cursor: pointer;
+
+    box-shadow:
+    0 0 18px rgba(0,255,255,0.25);
+
+}
+
+.dome-toggle span {
+
+    width: 5px;
+    height: 5px;
+
+    background: #00e5ff;
+
+    border-radius: 50%;
+
+    margin: auto;
+
+}
+
+
+/* =========================
+   HALF DOME
+========================= */
+
+.dome-menu {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 240px;
+    height: 420px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 22px;
+
+    padding-left: 25px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 0.35s ease;
+
+}
+
+.dome-menu.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+/* HALF DOME */
+
+.dome-menu::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -50px;
+    left: -260px;
+
+    width: 520px;
+    height: 520px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(circle at center,
+    rgba(0,255,255,0.08),
+    rgba(0,0,0,0.94));
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+
+    z-index: 0;
+
+}
+
+
+/* LINKS */
+
+.dome-menu a {
+
+    position: relative;
+
+    z-index: 2;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    width: fit-content;
+
+    white-space: nowrap;
+
+}
+
+
+/* CURVE EFFECT */
+
+.dome-menu a:nth-child(1) {
+    margin-left: 70px;
+}
+
+.dome-menu a:nth-child(2) {
+    margin-left: 105px;
+}
+
+.dome-menu a:nth-child(3) {
+    margin-left: 125px;
+}
+
+.dome-menu a:nth-child(4) {
+    margin-left: 135px;
+}
+
+.dome-menu a:nth-child(5) {
+    margin-left: 125px;
+}
+
+.dome-menu a:nth-child(6) {
+    margin-left: 105px;
+}
+
+.dome-menu a:nth-child(7) {
+    margin-left: 70px;
+}
+
+.dome-menu a:nth-child(8) {
+    margin-left: 35px;
+}

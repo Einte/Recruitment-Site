@@ -46,89 +46,74 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-window.onload = function() {
-    // --- 1. ELEMENTS ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. SELECT ALL ELEMENTS ONCE
     const genBtn = document.getElementById('preview-btn');
-    const fileInput = document.getElementById('file-input');
+    const fileInput = document.getElementById("inCvUpload"); // Make sure this matches HTML ID
     const inputs = document.querySelectorAll('#application-form input[required]');
-    const scanBtn = document.getElementById('scan-button');
-    const video = document.getElementById('webcam-view');
-    const status = document.getElementById('status-text');
-    const laser = document.getElementById('laser');
-    const photo = document.getElementById('user-photo');
-    const canvas = document.getElementById('capture-canvas');
+    const scanBtn = document.getElementById('startActionBtn'); // Check this ID matches HTML
+    const video = document.getElementById('liveWebcam');
+    const status = document.getElementById('statusBoxPane');
+    const laser = document.querySelector('.laser-scanner-line');
+    const photo = document.getElementById('freezeFrameCapture');
+    const canvas = document.getElementById('snapshotCanvas');
     
     let fileImageData = null;
 
-    // --- 2. FORM VALIDATION ---
+    // 2. FORM VALIDATION
     function checkForm() {
         let allFilled = true;
         inputs.forEach(input => {
             if (!input.value.trim()) allFilled = false;
         });
-        genBtn.disabled = !allFilled;
-        genBtn.style.opacity = allFilled ? "1" : "0.3";
-        genBtn.style.cursor = allFilled ? "pointer" : "not-allowed";
+        if (genBtn) {
+            genBtn.disabled = !allFilled;
+            genBtn.style.opacity = allFilled ? "1" : "0.3";
+        }
+    }
+    inputs.forEach(input => input.addEventListener('input', checkForm));
+
+    // 3. FILE PREVIEW
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            const zoneText = document.getElementById('uploadFileLabel');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (zoneText) zoneText.innerText = "READY: " + file.name;
+                
+                const reader = new FileReader();
+                reader.onload = (e) => { fileImageData = e.target.result; };
+                reader.readAsDataURL(file);
+            }
+        });
     }
 
-    inputs.forEach(input => {
-        input.addEventListener('input', checkForm);
-    });
+    // 4. CAMERA SCAN
+    if (scanBtn) {
+        scanBtn.onclick = async function() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.style.display = "block";
+                status.innerText = "SYSTEM: SCANNING...";
+                laser.style.display = "block";
 
-    // --- 3. FILE PREVIEW ---
-    fileInput.onchange = function() {
-        const zoneText = document.getElementById('file-display-name');
-        const zone = document.getElementById('file-preview-zone');
-        
-        if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            zoneText.innerText = "READY: " + file.name;
-            zoneText.style.color = "#38bdf8";
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                fileImageData = e.target.result;
-                zone.style.backgroundImage = `url(${fileImageData})`;
-                zone.style.backgroundSize = 'contain';
-                zone.style.backgroundRepeat = 'no-repeat';
-                zone.style.backgroundPosition = 'center';
-            };
-            reader.readAsDataURL(file); 
-        }
-    };
+                setTimeout(() => {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                    photo.src = canvas.toDataURL('image/png');
+                    photo.style.display = "block";
+                    laser.style.display = "none";
+                    status.innerText = "SYSTEM: VERIFIED";
+                    stream.getTracks().forEach(track => track.stop());
+                }, 3000);
+            } catch (error) {
+                status.innerText = "ERROR: CAMERA BLOCKED";
+            }
+        };
+    }
 
-    // --- 4. CAMERA SCAN ---
-    scanBtn.onclick = async function() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            video.srcObject = stream;
-            status.innerText = "SYSTEM: SCANNING BIOMETRICS...";
-            laser.style.display = "block";
-
-            setTimeout(() => {
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                photo.src = canvas.toDataURL('image/png');
-                
-                laser.style.display = "none";
-                status.innerText = "SYSTEM: VERIFIED";
-                status.style.color = "#10b981";
-                
-                const badge = document.getElementById('badge');
-                if(badge) {
-                    badge.innerText = "VERIFIED";
-                    badge.className = "verify-badge unlocked";
-                }
-                
-                stream.getTracks().forEach(track => track.stop());
-            }, 3000); 
-        } catch (error) {
-            status.innerText = "ERROR: CAMERA BLOCKED";
-            status.style.color = "#ef4444";
-        }
-    };
 
     // --- 5. GENERATE CARD LOGIC ---
     genBtn.onclick = function() {
@@ -158,7 +143,7 @@ window.onload = function() {
         // Scroll to the card preview
         document.getElementById('card-preview-section').scrollIntoView({ behavior: 'smooth' });
     };
-};
+});
 
 // ==========================================
 // 3. AUTO CONTROL FILL TRACK ROUTERS
@@ -243,7 +228,7 @@ if (submitAppBtn) {
 
         if (congratsOverlay) {
             congratsOverlay.classList.add('is-active');
-            particleTimerInterval = setInterval(spawnFullscreenSprinkle, 50);
+            particleTimerInterval = setInterval(spawnFullscreenSprinkle, 20);
             setTimeout(() => { clearInterval(particleTimerInterval); }, 2500);
         }
     });

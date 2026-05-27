@@ -277,6 +277,7 @@ main {
    7. RUNTIME STABLE ISOLATED GLOBAL FOOTER
    ========================================================================== */
 footer {
+  background-color: var(--glass-bg);
   text-align: center;
   padding: 40px 20px;
   margin-top: auto;

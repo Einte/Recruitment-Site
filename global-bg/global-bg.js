@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==========================================
 // 2. HIGH-PERFORMANCE PLEXUS MATRIX RENDERER
 // ==========================================
-// Assuming nodes, svg, width, height, and maxDistance are defined globally in your main framework loop:
+// Assuming nodes, svg, width, height, anthis d maxDistance are defined globally in your main framework loop:
 
 function renderPlexusTick() {
     // FIX 1: Flush old structural layers cleanly to eliminate DOM accumulation leaks
@@ -119,8 +119,8 @@ function initPlexus() {
         nodes.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 2,
-            vy: (Math.random() - 0.5) * 2
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5
         });
     }
     
@@ -136,10 +136,6 @@ window.addEventListener("resize", () => {
     width = window.innerWidth;
     height = window.innerHeight;
 });
-
-document.addEventListener("DOMContentLoaded", initPlexus);
-
-
 
 
 // Wait for both the DOM AND the header injection

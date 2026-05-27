@@ -58,6 +58,7 @@ main {
 }
 
 .page-title-section h2 {
+  margin-top: 70px;
   font-size: 2.5rem;
   color: var(--text-main);
   margin-bottom: 10px;
@@ -226,7 +227,7 @@ main {
    ========================================================================== */
 footer {
   border-top: 1px solid rgba(34, 197, 94, 0.2);
-  background: var(--body-bg);
+  background: var(--glass-bg);
   padding: 30px 20px;
   text-align: center;
   position: relative;
