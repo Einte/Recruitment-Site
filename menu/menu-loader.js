@@ -27,15 +27,11 @@ document.addEventListener("change", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-
     const navAnchor = document.getElementById('universal-nav-anchor');
-
     if (navAnchor) {
-
         const path = window.location.pathname.split('/').filter(Boolean).length > 1
-            ? '../header/index.html'
+            ? '/NewRecruitmentWebsite/header/index.html'
             : './header/index.html';
-
         fetch(path)
             .then(res => res.text())
             .then(data => {
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const domePath = window.location.pathname.split('/').filter(Boolean).length > 1
                         ? '../the-dome-menu/index.html'
-                        : './the-dome-menu/index.html';
+                        : '/NewRecruitmentWebsite/header/html.html';
 
                     fetch(domePath)
                         .then(res => res.text())

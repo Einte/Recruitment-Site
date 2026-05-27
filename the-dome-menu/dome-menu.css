@@ -3,7 +3,7 @@
     position: fixed;
 
     top: 8px;
-    left: 8px;
+    left: 10px;
 
     z-index: 999999;
 
@@ -101,7 +101,7 @@ z-index: 9999999;
 
     justify-content: center;
 
-    gap: 22px;
+    gap: 28px;
 
     padding-left: 25px;
 
@@ -143,11 +143,26 @@ z-index: 9999999;
     rgba(0,255,255,0.08),
     rgba(0,0,0,0.94));
 
+    box-shadow:
+0 0 40px rgba(0,255,255,0.15),
+inset 0 0 30px rgba(255,255,255,0.03);
+
     border: 1px solid rgba(255,255,255,0.08);
 
     backdrop-filter: blur(18px);
 
     z-index: 0;
+
+}
+
+.dome-menu a:hover {
+
+    color: #00e5ff;
+
+    transform: translateX(6px);
+
+    text-shadow:
+    0 0 10px rgba(0,255,255,0.9);
 
 }
 
@@ -171,6 +186,8 @@ z-index: 9999999;
     width: fit-content;
 
     white-space: nowrap;
+
+    transition: 0.25s ease;
 
 }
 
