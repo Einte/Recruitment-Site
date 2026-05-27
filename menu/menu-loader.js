@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navAnchor) {
 
         const path = window.location.pathname.split('/').filter(Boolean).length > 1
-            ? '../header/header.html'
-            : './header/header.html';
+            ? '../header/index.html'
+            : './header/index.html';
 
         fetch(path)
             .then(res => res.text())
@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (domeAnchor) {
 
                     const domePath = window.location.pathname.split('/').filter(Boolean).length > 1
-                        ? '../the-dome-menu/dome-menu.html'
-                        : './the-dome-menu/dome-menu.html';
+                        ? '../the-dome-menu/index.html'
+                        : './the-dome-menu/index.html';
 
                     fetch(domePath)
                         .then(res => res.text())
