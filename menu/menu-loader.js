@@ -27,41 +27,74 @@ document.addEventListener("change", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const navAnchor = document.getElementById('universal-nav-anchor');
+
+    const navAnchor = document.getElementById("universal-nav-anchor");
+
     if (navAnchor) {
-        const path = window.location.pathname.split('/').filter(Boolean).length > 1
-            ? '/NewRecruitmentWebsite/header/index.html'
-            : './header/index.html';
-        fetch(path)
-            .then(res => res.text())
+
+        // FETCH HEADER
+        fetch("/NewRecruitmentWebsite/header/header.html")
+
+            .then(res => {
+
+                if (!res.ok) {
+                    throw new Error("Header failed to load");
+                }
+
+                return res.text();
+
+            })
+
             .then(data => {
 
                 navAnchor.innerHTML = data;
 
-                // HEADER FINISHED LOADING
-                document.dispatchEvent(new CustomEvent('headerLoaded'));
+                // HEADER LOADED
+                document.dispatchEvent(
+                    new CustomEvent("headerLoaded")
+                );
 
                 // FETCH DOME MENU
                 const domeAnchor = document.getElementById("dome-menu-anchor");
 
                 if (domeAnchor) {
 
-                    const domePath = window.location.pathname.split('/').filter(Boolean).length > 1
-                        ? '../the-dome-menu/index.html'
-                        : './the-dome-menu/index.html';
+                    fetch("/NewRecruitmentWebsite/the-dome-menu/dome-menu.html")
 
-                    fetch(domePath)
-                        .then(res => res.text())
+                        .then(res => {
+
+                            if (!res.ok) {
+                                throw new Error("Dome menu failed to load");
+                            }
+
+                            return res.text();
+
+                        })
+
                         .then(menuData => {
 
                             domeAnchor.innerHTML = menuData;
 
-                            // DOME MENU FINISHED LOADING
-                            document.dispatchEvent(new CustomEvent('domeLoaded'));
+                            // DOME MENU LOADED
+                            document.dispatchEvent(
+                                new CustomEvent("domeLoaded")
+                            );
+
+                        })
+
+                        .catch(error => {
+
+                            console.error(error);
 
                         });
 
                 }
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
 
             });
 
