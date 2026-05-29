@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => 
     { const navAnchor = document.getElementById('universal-nav-anchor'); 
         if (navAnchor) { const path = window.location.pathname.split('/')
-            .filter(Boolean).length > 1 ? '../header/index.html' : './header/index.html'; fetch(path) 
+            .filter(Boolean).length > 1 ? '../header/header.html' : './header/header.html'; fetch(path) 
             .then(res => res.text()) 
             .then(data => { navAnchor.innerHTML = data; // HEADER FINISHED LOADING 
             document.dispatchEvent(new CustomEvent('headerLoaded')); // FETCH DOME MENU 
