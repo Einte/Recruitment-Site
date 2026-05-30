@@ -38,15 +38,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Attach click handler
         const domeToggle = document.getElementById("domeToggle");
         const domeMenu = document.getElementById("domeMenu");
+        const navBrand = document.querySelector(".nav-brand");
 
         if (!domeToggle || !domeMenu) {
             console.error("DOME MENU ELEMENTS NOT FOUND");
             return;
         }
+            domeToggle.addEventListener("click", () => {
+                domeMenu.classList.toggle("active");
 
-        domeToggle.addEventListener("click", () => {
-            domeMenu.classList.toggle("active");
-        });
+    if (navBrand) {
+        navBrand.classList.toggle("dome-open");
+    }
+
+});
 
         console.log("DOME MENU INITIALISED");
 
@@ -54,6 +59,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         console.error("MENU LOADER ERROR:", err);
 
+    }
+
+});
+
+const domeToggle = document.getElementById("domeToggle");
+const domeMenu = document.getElementById("domeMenu");
+const navBrand = document.querySelector(".nav-brand");
+
+domeToggle.addEventListener("click", () => {
+
+    domeMenu.classList.toggle("active");
+
+    if(navBrand){
+        navBrand.classList.toggle("dome-open");
     }
 
 });

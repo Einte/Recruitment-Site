@@ -12,6 +12,7 @@ body.light-mode {
     --text-main: #0f172a;
     --text-sub: #166534;
     --glass-bg: rgba(255, 255, 255, 0.85);
+    --boder-edge: #02ff63;
 }
 
 :root {
@@ -34,19 +35,23 @@ body.light-mode {
 /* ── 2. SINGLE SOURCE OF TRUTH: NAVBAR ── */
 .navbar-glass {
 
-    position: fixed;
 background-color: var(--glass-bg);
     display: flex;
 
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 16px;
-
+    position: fixed;
     height: 60px;
+    top: 0;
+
+    left: 0;
 
     width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+align-items: center;
+
+    padding: 0 20px;
 
     z-index: 9999;
 
@@ -54,16 +59,23 @@ background-color: var(--glass-bg);
 
 /* ── LOGO BRANDING SYSTEM ── */
 .nav-brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    margin-left: 58px;
-
+    margin-left: 0;
+    white-space: nowrap;
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif !important;
+    transition: transform 0.35s ease;
 }
+.nav-brand.dome-open {
+
+    transform: translateX(160px);
+    scale: 0.95;
+}
+
+
 /* The "DEV" Box */
 .logo-accent-box {
     background: linear-gradient(135deg, #22c55e, #16a34a);
@@ -71,6 +83,7 @@ background-color: var(--glass-bg);
     padding: 2px 8px;
     border-radius: 4px;
     font-weight: 900;
+    
 }
 
 /* The "LTD" Tag */
@@ -97,6 +110,8 @@ background-color: var(--glass-bg);
     gap: 25px;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
+    margin-left: 50px;
 }
 
 .nav-links a {
