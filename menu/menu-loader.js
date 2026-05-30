@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("MENU LOADER STARTED");
 
@@ -9,22 +9,51 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch("../header/header.html")
-        .then(res => {
-            console.log("HEADER STATUS:", res.status);
-            return res.text();
-        })
-        .then(data => {
+    try {
 
-            console.log("HEADER LOADED");
+        // Load header
+        const headerResponse = await fetch("../header/header.html");
+        const headerHtml = await headerResponse.text();
 
-            navAnchor.innerHTML = data;
+        navAnchor.innerHTML = headerHtml;
 
-        })
-        .catch(err => {
+        console.log("HEADER LOADED");
 
-            console.error("HEADER ERROR:", err);
+        // Find dome menu placeholder inside header
+        const domeAnchor = document.getElementById("dome-menu-anchor");
 
+        if (!domeAnchor) {
+            console.error("DOME MENU ANCHOR NOT FOUND");
+            return;
+        }
+
+        // Load dome menu
+        const domeResponse = await fetch("../the-dome-menu/dome-menu.html");
+        const domeHtml = await domeResponse.text();
+
+        domeAnchor.innerHTML = domeHtml;
+
+        console.log("DOME MENU LOADED");
+
+        // Attach click handler
+        const domeToggle = document.getElementById("domeToggle");
+        const domeMenu = document.getElementById("domeMenu");
+
+        if (!domeToggle || !domeMenu) {
+            console.error("DOME MENU ELEMENTS NOT FOUND");
+            return;
+        }
+
+        domeToggle.addEventListener("click", () => {
+            domeMenu.classList.toggle("active");
         });
+
+        console.log("DOME MENU INITIALISED");
+
+    } catch (err) {
+
+        console.error("MENU LOADER ERROR:", err);
+
+    }
 
 });

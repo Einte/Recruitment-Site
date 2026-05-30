@@ -1,12 +1,10 @@
 .dome-menu-wrapper {
 
     position: fixed;
-
     top: 8px;
-    left: 10px;
+    left: 15px;
 
     z-index: 999999;
-
     display: none;
 
 }
@@ -17,15 +15,9 @@
         display: block;
     }
 
-}
-@media (max-width: 900px) {
-
     .nav-links {
         display: none;
     }
-
-}
-@media (max-width: 900px) {
 
     .theme-toggle-wrapper {
         display: none;
@@ -34,7 +26,7 @@
 }
 
 /* =========================
-   MENU ICON
+   TOGGLE BUTTON
 ========================= */
 
 .dome-toggle {
@@ -43,7 +35,6 @@
     height: 46px;
 
     border: none;
-
     border-radius: 14px;
 
     background: rgba(0,0,0,0.65);
@@ -51,16 +42,17 @@
     backdrop-filter: blur(12px);
 
     display: grid;
-
     grid-template-columns: repeat(3,1fr);
 
     gap: 4px;
 
     padding: 8px;
-position: relative;
 
-z-index: 9999999;
     cursor: pointer;
+
+    position: relative;
+
+    z-index: 9999999;
 
     box-shadow:
     0 0 18px rgba(0,255,255,0.25);
@@ -80,9 +72,8 @@ z-index: 9999999;
 
 }
 
-
 /* =========================
-   HALF DOME
+   DOME MENU
 ========================= */
 
 .dome-menu {
@@ -92,18 +83,8 @@ z-index: 9999999;
     top: 0;
     left: 0;
 
-    width: 240px;
+     width: 160px;
     height: 420px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    gap: 28px;
-
-    padding-left: 25px;
 
     opacity: 0;
 
@@ -120,7 +101,6 @@ z-index: 9999999;
     pointer-events: auto;
 
 }
-
 
 /* HALF DOME */
 
@@ -155,25 +135,74 @@ inset 0 0 30px rgba(255,255,255,0.03);
 
 }
 
-.dome-menu a:hover {
+/* MENU LIST */
 
-    color: #00e5ff;
+.dome-menu ul {
 
-    transform: translateX(6px);
+    list-style: none;
 
-    text-shadow:
-    0 0 10px rgba(0,255,255,0.9);
+    margin: 0;
+    padding: 70px 0 0 0;
 
-}
+    display: flex;
 
+    flex-direction: column;
 
-/* LINKS */
-
-.dome-menu a {
+    gap: 28px;
 
     position: relative;
 
     z-index: 2;
+
+}
+
+.dome-menu li {
+
+    position: relative;
+
+}
+.dome-menu ul {
+    .dome-menu ul {
+    padding: 70px 0 0 0;
+}
+}
+
+/* CURVED DOME EFFECT */
+.dome-menu li:nth-child(1) {
+    margin-left: 45px;
+}
+
+.dome-menu li:nth-child(2) {
+    margin-left: 80px;
+}
+
+.dome-menu li:nth-child(3) {
+    margin-left: 100px;
+}
+
+.dome-menu li:nth-child(4) {
+    margin-left: 110px;
+}
+
+.dome-menu li:nth-child(5) {
+    margin-left: 100px;
+}
+
+.dome-menu li:nth-child(6) {
+    margin-left: 80px;
+}
+
+.dome-menu li:nth-child(7) {
+    margin-left: 45px;
+}
+
+.dome-menu li:nth-child(8) {
+    margin-left: 15px;
+}
+
+/* LINKS */
+
+.dome-menu a {
 
     color: white;
 
@@ -183,45 +212,28 @@ inset 0 0 30px rgba(255,255,255,0.03);
 
     font-weight: 600;
 
-    width: fit-content;
-
     white-space: nowrap;
 
     transition: 0.25s ease;
 
 }
 
+.dome-menu a:hover {
 
-/* CURVE EFFECT */
+    color: #00e5ff;
 
-.dome-menu a:nth-child(1) {
-    margin-left: 70px;
+    transform: translateX(6px);
+
+    text-shadow:
+        0 0 10px rgba(0,255,255,0.9);
+
 }
+@media (max-width: 900px) {
 
-.dome-menu a:nth-child(2) {
-    margin-left: 105px;
-}
+    .nav-brand {
 
-.dome-menu a:nth-child(3) {
-    margin-left: 125px;
-}
+        margin-left: 60px;
 
-.dome-menu a:nth-child(4) {
-    margin-left: 135px;
-}
+    }
 
-.dome-menu a:nth-child(5) {
-    margin-left: 125px;
-}
-
-.dome-menu a:nth-child(6) {
-    margin-left: 105px;
-}
-
-.dome-menu a:nth-child(7) {
-    margin-left: 70px;
-}
-
-.dome-menu a:nth-child(8) {
-    margin-left: 35px;
 }

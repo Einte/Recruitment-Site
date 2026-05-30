@@ -34,8 +34,8 @@ body.light-mode {
 /* ── 2. SINGLE SOURCE OF TRUTH: NAVBAR ── */
 .navbar-glass {
 
-    position: relative;
-
+    position: fixed;
+background-color: var(--glass-bg);
     display: flex;
 
     align-items: center;
