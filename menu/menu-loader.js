@@ -2,11 +2,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("MENU LOADER STARTED");
 
-    const navAnchor = document.getElementById("universal-nav-anchor");
+    const navAnchor =
+        document.getElementById(
+            "universal-nav-anchor"
+        );
 
     if (!navAnchor) {
 
-        console.error("NAV ANCHOR NOT FOUND");
+        console.error(
+            "NAV ANCHOR NOT FOUND"
+        );
 
         return;
 
@@ -15,24 +20,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
 
         // ==========================================
-        // DETECT ROOT OR SUBPAGE
+        // REPOSITORY ROOT
         // ==========================================
 
-        const path = window.location.pathname;
-
-        const isHome =
-            path.endsWith("/") ||
-            path.endsWith("/index.html") ||
-            path.endsWith("/NewRecruitmentWebsite");
-
-        const basePath = isHome ? "" : "../";
+        const REPO_ROOT =
+            "/Recruitment-Site";
 
         // ==========================================
         // LOAD HEADER
         // ==========================================
 
         const headerResponse =
-            await fetch(basePath + "header/header.html");
+            await fetch(
+                `${REPO_ROOT}/header/header.html`
+            );
 
         if (!headerResponse.ok) {
 
@@ -46,16 +47,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         const headerHtml =
             await headerResponse.text();
 
-        navAnchor.innerHTML = headerHtml;
+        navAnchor.innerHTML =
+            headerHtml;
 
-        console.log("HEADER LOADED");
+        console.log(
+            "HEADER LOADED"
+        );
 
         // ==========================================
         // LOAD DOME MENU
         // ==========================================
 
         const domeAnchor =
-            document.getElementById("dome-menu-anchor");
+            document.getElementById(
+                "dome-menu-anchor"
+            );
 
         if (!domeAnchor) {
 
@@ -69,8 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const domeResponse =
             await fetch(
-                basePath +
-                "the-dome-menu/dome-menu.html"
+                `${REPO_ROOT}/the-dome-menu/dome-menu.html`
             );
 
         if (!domeResponse.ok) {
@@ -85,24 +90,36 @@ document.addEventListener("DOMContentLoaded", async () => {
         const domeHtml =
             await domeResponse.text();
 
-        domeAnchor.innerHTML = domeHtml;
+        domeAnchor.innerHTML =
+            domeHtml;
 
-        console.log("DOME MENU LOADED");
+        console.log(
+            "DOME MENU LOADED"
+        );
 
         // ==========================================
         // INITIALISE DOME MENU
         // ==========================================
 
         const domeToggle =
-            document.getElementById("domeToggle");
+            document.getElementById(
+                "domeToggle"
+            );
 
         const domeMenu =
-            document.getElementById("domeMenu");
+            document.getElementById(
+                "domeMenu"
+            );
 
         const navBrand =
-            document.querySelector(".nav-brand");
+            document.querySelector(
+                ".nav-brand"
+            );
 
-        if (!domeToggle || !domeMenu) {
+        if (
+            !domeToggle ||
+            !domeMenu
+        ) {
 
             console.error(
                 "DOME MENU ELEMENTS NOT FOUND"
@@ -112,19 +129,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         }
 
-        domeToggle.addEventListener("click", () => {
+        domeToggle.addEventListener(
+            "click",
+            () => {
 
-            domeMenu.classList.toggle("active");
-
-            if (navBrand) {
-
-                navBrand.classList.toggle(
-                    "dome-open"
+                domeMenu.classList.toggle(
+                    "active"
                 );
 
-            }
+                if (navBrand) {
 
-        });
+                    navBrand.classList.toggle(
+                        "dome-open"
+                    );
+
+                }
+
+            }
+        );
 
         console.log(
             "DOME MENU INITIALISED"
@@ -135,7 +157,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         // ==========================================
 
         document.dispatchEvent(
-            new Event("headerLoaded")
+            new Event(
+                "headerLoaded"
+            )
         );
 
     } catch (err) {
