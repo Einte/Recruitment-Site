@@ -11,113 +11,58 @@
 
 ===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadFooter
-);
+document.addEventListener("DOMContentLoaded", loadFooter);
 
 async function loadFooter() {
+  const footerMount = document.getElementById("footer-mount");
 
-    const footerMount =
-        document.getElementById(
-            "footer-mount"
-        );
+  if (!footerMount) {
+    console.error("FOOTER MOUNT NOT FOUND");
 
-    if (!footerMount) {
+    return;
+  }
 
-        console.error(
-            "FOOTER MOUNT NOT FOUND"
-        );
+  try {
+    const response = await fetch("../footer/footer.html");
 
-        return;
-
+    if (!response.ok) {
+      throw new Error("FOOTER LOAD FAILED");
     }
 
-    try {
+    footerMount.innerHTML = await response.text();
 
-        const response =
-            await fetch(
-                "../footer/footer.html"
-            );
+    console.log("FOOTER LOADED");
 
-        if (!response.ok) {
-
-            throw new Error(
-                "FOOTER LOAD FAILED"
-            );
-
-        }
-
-        footerMount.innerHTML =
-            await response.text();
-
-        console.log(
-            "FOOTER LOADED"
-        );
-
-        initialiseFooter();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            error
-        );
-
-    }
-
+    initialiseFooter();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function initialiseFooter() {
+  const subscribeButton = document.getElementById(
+    "newsletter-subscribe-button",
+  );
 
-    const subscribeButton =
-        document.getElementById(
-            "newsletter-subscribe-button"
-        );
+  const emailInput = document.getElementById("newsletter-email");
 
-    const emailInput =
-        document.getElementById(
-            "newsletter-email"
-        );
+  if (!subscribeButton || !emailInput) {
+    console.warn("FOOTER ELEMENTS NOT FOUND");
 
-    if (
-        !subscribeButton ||
-        !emailInput
-    ) {
+    return;
+  }
 
-        console.warn(
-            "FOOTER ELEMENTS NOT FOUND"
-        );
+  subscribeButton.addEventListener("click", () => {
+    const emailAddress = emailInput.value.trim();
 
-        return;
+    if (!emailAddress) {
+      alert("Please enter an email address.");
 
+      return;
     }
 
-    subscribeButton.addEventListener(
-        "click",
-        () => {
+    alert("Thank you for subscribing.");
 
-            const emailAddress =
-                emailInput.value.trim();
-
-            if (!emailAddress) {
-
-                alert(
-                    "Please enter an email address."
-                );
-
-                return;
-
-            }
-
-            alert(
-                "Thank you for subscribing."
-            );
-
-            emailInput.value = "";
-
-        }
-    );
-
+    emailInput.value = "";
+  });
 }

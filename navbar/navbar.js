@@ -8,98 +8,49 @@
 ===================================================== */
 
 const SITE_ROOT =
-    window.location.hostname === "127.0.0.1" ||
-    window.location.hostname === "localhost"
-        ? ""
-        : "/Recruitment-Site";
+  window.location.hostname === "127.0.0.1" ||
+  window.location.hostname === "localhost"
+    ? ""
+    : "/Recruitment-Site";
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadNavbar
-);
+document.addEventListener("DOMContentLoaded", loadNavbar);
 
 async function loadNavbar() {
+  const navbarMount = document.getElementById("navbar-mount");
 
-    const navbarMount =
-        document.getElementById(
-            "navbar-mount"
-        );
+  if (!navbarMount) {
+    console.error("NAVBAR MOUNT NOT FOUND");
 
-    if (!navbarMount) {
+    return;
+  }
 
-        console.error(
-            "NAVBAR MOUNT NOT FOUND"
-        );
+  try {
+    const response = await fetch(`${SITE_ROOT}/navbar/navbar.html`);
 
-        return;
-
+    if (!response.ok) {
+      throw new Error("NAVBAR LOAD FAILED");
     }
 
-    try {
+    navbarMount.innerHTML = await response.text();
 
-        const response =
-            await fetch(
-                `${SITE_ROOT}/navbar/navbar.html`
-            );
+    console.log("NAVBAR LOADED");
 
-        if (!response.ok) {
-
-            throw new Error(
-                "NAVBAR LOAD FAILED"
-            );
-
-        }
-
-        navbarMount.innerHTML =
-            await response.text();
-
-        console.log(
-            "NAVBAR LOADED"
-        );
-
-        highlightActivePage();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            error
-        );
-
-    }
-
+    highlightActivePage();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function highlightActivePage() {
+  const currentPage = window.location.pathname;
 
-    const currentPage =
-        window.location.pathname;
+  const navigationLinks = document.querySelectorAll(".main-navbar-links a");
 
-    const navigationLinks =
-        document.querySelectorAll(
-            ".main-navbar-links a"
-        );
+  navigationLinks.forEach((link) => {
+    const linkPath = new URL(link.href).pathname;
 
-    navigationLinks.forEach(
-        link => {
-
-            const linkPath =
-                new URL(
-                    link.href
-                ).pathname;
-
-            if (
-                currentPage === linkPath
-            ) {
-
-                link.classList.add(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
+    if (currentPage === linkPath) {
+      link.classList.add("active");
+    }
+  });
 }

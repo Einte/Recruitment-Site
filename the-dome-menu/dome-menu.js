@@ -21,137 +21,68 @@
 
 ===================================================== */
 
-
 /* =====================================================
    START ENGINE
 ===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadDomeMenu
-);
-
+document.addEventListener("DOMContentLoaded", loadDomeMenu);
 
 /* =====================================================
    LOAD DOME MENU
 ===================================================== */
 
 async function loadDomeMenu() {
+  const domeMenuMount = document.getElementById("dome-menu-mount");
 
-    const domeMenuMount =
+  if (!domeMenuMount) {
+    console.error("DOME MENU MOUNT NOT FOUND");
 
-        document.getElementById(
-            "dome-menu-mount"
-        );
+    return;
+  }
 
-    if (!domeMenuMount) {
+  try {
+    const response = await fetch("../the-dome-menu/dome-menu.html");
 
-        console.error(
-            "DOME MENU MOUNT NOT FOUND"
-        );
-
-        return;
-
+    if (!response.ok) {
+      throw new Error("DOME MENU LOAD FAILED");
     }
 
-    try {
+    const domeMenuHtml = await response.text();
 
-        const response =
+    domeMenuMount.innerHTML = domeMenuHtml;
 
-            await fetch(
-                "../the-dome-menu/dome-menu.html"
-            );
+    console.log("DOME MENU LOADED");
 
-        if (!response.ok) {
-
-            throw new Error(
-                "DOME MENU LOAD FAILED"
-            );
-
-        }
-
-        const domeMenuHtml =
-
-            await response.text();
-
-        domeMenuMount.innerHTML =
-            domeMenuHtml;
-
-        console.log(
-            "DOME MENU LOADED"
-        );
-
-        initialiseDomeMenu();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            error
-        );
-
-    }
-
+    initialiseDomeMenu();
+  } catch (error) {
+    console.error(error);
+  }
 }
-
 
 /* =====================================================
    INITIALISE MENU
 ===================================================== */
 
 function initialiseDomeMenu() {
+  const domeToggle = document.getElementById("domeToggle");
 
-    const domeToggle =
+  const domeMenu = document.getElementById("domeMenu");
 
-        document.getElementById(
-            "domeToggle"
-        );
+  const navLogo = document.querySelector(".nav-logo");
 
-    const domeMenu =
+  if (!domeToggle || !domeMenu) {
+    console.error("DOME MENU ELEMENTS NOT FOUND");
 
-        document.getElementById(
-            "domeMenu"
-        );
+    return;
+  }
 
-    const navLogo =
+  domeToggle.addEventListener("click", toggleDomeMenu);
 
-        document.querySelector(
-            ".nav-logo"
-        );
+  function toggleDomeMenu() {
+    domeMenu.classList.toggle("active");
 
-    if (
-        !domeToggle ||
-        !domeMenu
-    ) {
-
-        console.error(
-            "DOME MENU ELEMENTS NOT FOUND"
-        );
-
-        return;
-
+    if (navLogo) {
+      navLogo.classList.toggle("dome-open");
     }
-
-    domeToggle.addEventListener(
-        "click",
-        toggleDomeMenu
-    );
-
-    function toggleDomeMenu() {
-
-        domeMenu.classList.toggle(
-            "active"
-        );
-
-        if (navLogo) {
-
-            navLogo.classList.toggle(
-                "dome-open"
-            );
-
-        }
-
-    }
-
+  }
 }
