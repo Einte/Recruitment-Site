@@ -26,17 +26,6 @@ body {
   background: transparent;
 }
 
-/* ==========================================================================
-   2. REUSABLE SYSTEM GLASS CONTAINER SPECIFICATIONS
-   ========================================================================== */
-.glass-panel {
-  position: relative;
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
-  -webkit-backdrop-filter: blur(16px) saturate(1.5) brightness(1.1);
-  border: 1px solid var(--glass-border) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
 
 /* ==========================================================================
    4. WORKSPACE DASHBOARD SPLIT GRID SYSTEM

@@ -2,81 +2,129 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../Theme/theme.css">
-  <link rel="stylesheet" href="../the-dome-menu/dome-menu.css">
-    <link rel="stylesheet" href="../maps/maps.css">
+
   <title>Location Matrix | Enfield Dev LTD</title>
+
+  <link rel="stylesheet" href="../dark-mode/dark-mode.css">
+  <link rel="stylesheet" href="../the-dome-menu/dome-menu.css">
+  <link rel="stylesheet" href="../navbar/navbar.css">
+  <link rel="stylesheet" href="../footer/footer.css">
+  <link rel="stylesheet" href="../bg-animation/bg-animation.css">
+  <link rel="stylesheet" href="../maps/maps.css">
+
 </head>
 
 <body>
+
+  <div id="background-animation-mount">
+
     <svg id="plexusSVG"></svg>
-<div id="universal-nav-anchor"></div>
-<div class="theme-toggle-wrapper"></div>
+
+  </div>
 
   <div class="site-wrapper">
+
+    <div id="navbar-mount"></div>
+
+    <div id="dome-menu-mount"></div>
+
+    <div id="dark-mode-mount"></div>
+
     <main>
+
       <section class="page-title-section">
+
         <h2>HQ Infrastructure Coordinates</h2>
-        <p>Operational site geography and real-time perimeter monitoring mapping parameters.</p>
+
+        <p>
+          Operational site geography and
+          real-time perimeter monitoring
+          mapping parameters.
+        </p>
+
       </section>
 
       <div class="map-dashboard-grid">
-        
+
         <div class="info-column glass-panel">
+
           <div class="meta-block-group">
-            
+
             <div class="info-card">
+
               <h3>HQ Street Address</h3>
-              <p>Enfield Innovation Hub, Sector 4<br>Innova Business Park, Waylands</p>
+
+              <p>
+                Enfield Innovation Hub,
+                Sector 4<br>
+                Innova Business Park,
+                Waylands
+              </p>
+
             </div>
 
             <div class="info-card">
+
               <h3>Post Code Matrix</h3>
-              <p class="highlight">EN3 4XF</p>
+
+              <p class="highlight">
+                EN3 4XF
+              </p>
+
             </div>
 
             <div class="info-card">
+
               <h3>Communications Line</h3>
-              <p class="highlight">+44 (0) 20 7946 0192</p>
+
+              <p class="highlight">
+                +44 (0) 20 7946 0192
+              </p>
+
             </div>
 
           </div>
 
           <div class="status-badge">
+
             <span class="status-dot"></span>
-            <span>All Nodes Operational</span>
+
+            <span>
+              All Nodes Operational
+            </span>
+
           </div>
+
         </div>
 
         <div class="map-column glass-panel">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.4029283374157!2d-0.044800799999999995!3d51.6524588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761f007b696e2f%3A0x31bc4bf997245f1e!2sEnfield%20College%20Sports%20Centre!5e0!3m2!1sen!2suk!4v1776897850370!5m2!1sen!2suk" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.4029283374157!2d-0.044800799999999995!3d51.6524588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761f007b696e2f%3A0x31bc4bf997245f1e!2sEnfield%20College%20Sports%20Centre!5e0!3m2!1sen!2suk!4v1776897850370!5m2!1sen!2suk"
+            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
+
           </iframe>
+
         </div>
 
       </div>
+
     </main>
 
-    <footer>
-      <div class="social-row">
-        <a href="https://github.com" target="_blank" class="social-icon">GH // GITHUB</a>
-        <a href="https://linkedin.com" target="_blank" class="social-icon">LN // LINKEDIN</a>
-        <a href="https://twitter.com" target="_blank" class="social-icon">X // TERMINAL</a>
-      </div>
-      <p>&copy; 2026 Enfield Dev LTD. Core career matrix indexes actively maintained.</p>
-    </footer>
+    <div id="footer-mount"></div>
+
   </div>
 
+  <script src="../bg-animation/bg-animation.js"></script>
+  <script src="../navbar/navbar.js"></script>
+  <script src="../the-dome-menu/dome-menu.js"></script>
+  <script src="../dark-mode/dark-mode.js"></script>
+  <script src="../footer/footer.js"></script>
 
-<script src="../menu/menu-loader.js"></script>
-    <script src="../Theme/theme.js"></script>
-        <script src="../global-bg/global-bg.js"></script>
 </body>
 
 </html>

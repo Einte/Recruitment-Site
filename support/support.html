@@ -1,112 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Support | Enfield Dev LTD</title>
-<link rel="stylesheet" href="../Theme/theme.css">
-<link rel="stylesheet" href="../support/support.css">
-<link rel="stylesheet" href="../the-dome-menu/dome-menu.css">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Support | Enfield Dev LTD</title>
+
+    <link rel="stylesheet" href="../dark-mode/dark-mode.css">
+    <link rel="stylesheet" href="../the-dome-menu/dome-menu.css">
+    <link rel="stylesheet" href="../footer/footer.css">
+    <link rel="stylesheet" href="../navbar/navbar.css">
+    <link rel="stylesheet" href="../bg-animation/bg-animation.css">
+    <link rel="stylesheet" href="../support/support.css">
+
 </head>
 
 <body>
-<div id="universal-nav-anchor"></div>
 
-<svg id="plexusSVG"></svg>
+    <div id="background-animation-mount">
+        <svg id="plexusSVG"></svg>
+    </div>
+    
+    <div class="site-wrapper">
+        <div id="navbar-mount"></div>
+        <div id="dome-menu-mount"></div>
+        <div id="dark-mode-mount"></div>
+        <main class="support-page">
+            <section class="support-hero glass-panel">
+                <h1>How can we help?</h1>
+                <div class="search-box">
+                <input
+                        type="text"
+                        id="supportSearch"
+                        placeholder="Search support topics...">
+                </div>
+                <div class="quick-links">
+                    <h3>Ask about this page</h3>
+                    <a href="#">Explain the application process</a>
+                    <a href="#">What job roles are available?</a>
+                    <a href="#">Describe the required qualification</a>
+                    <a href="#">How do I submit my CV?</a>
+                    <a href="#">What courses are offered?</a>
+                    <a href="#">How to apply for a position</a>
+                    <a href="#">Can I download courses?</a>
+                </div>
+            </section>
 
-<main class="support-page">
+            <section class="support-grid">
 
-    <section class="support-hero glass-panel">
+                <article class="support-card glass-panel">
 
-        <h1>How can we help?</h1>
+                    <h3>Employment</h3>
 
-        <div class="search-box">
-            <input type="text"
-                   id="supportSearch"
-                   placeholder="Search support topics...">
-        </div>
+                    <p>
+                        Information on current vacancies,
+                        contract terms and how to join
+                        our internal talent pool.
+                    </p>
 
-        <div class="quick-links">
+                </article>
 
-            <h3>Ask about this page</h3>
+                <article class="support-card glass-panel">
 
-            <a href="#">Explain the application process</a>
-            <a href="#">What job roles are available?</a>
-            <a href="#">Describe the required qualification</a>
-            <a href="#">How do I submit my CV?</a>
-            <a href="#">What courses are offered?</a>
-            <a href="#">How to apply for a position</a>
-            <a href="#">Can I download courses?</a>
+                    <h3>Training</h3>
 
-        </div>
+                    <p>
+                        Access onboarding modules,
+                        skill development paths and
+                        certification programmes.
+                    </p>
 
-    </section>
+                </article>
 
-    <section class="support-grid">
+                <article class="support-card glass-panel">
 
-        <article class="support-card glass-panel">
-            <h3>Employment</h3>
-            <p>Information on current vacancies, contract terms and how to join our internal talent pool.</p>
-        </article>
+                    <h3>Courses</h3>
 
-        <article class="support-card glass-panel">
-            <h3>Training</h3>
-            <p>Access onboarding modules, skill development paths and certification programmes.</p>
-        </article>
+                    <p>
+                        Explore technical curriculum,
+                        workshops and mastery classes.
+                    </p>
 
-        <article class="support-card glass-panel">
-            <h3>Courses</h3>
-            <p>Explore technical curriculum, workshops and mastery classes.</p>
-        </article>
+                </article>
 
-        <article class="support-card glass-panel">
-            <h3>Gaming Experience</h3>
-            <p>Support for gaming infrastructure, tournament scheduling and hardware connectivity.</p>
-        </article>
+                <article class="support-card glass-panel">
 
-        <article class="support-card glass-panel">
-            <h3>Client Management</h3>
-            <p>Tools and logs for handling client communications and project delivery expectations.</p>
-        </article>
+                    <h3>Gaming Experience</h3>
 
-        <article class="support-card glass-panel">
-            <h3>Jobs Available</h3>
-            <p>View live project requirements and open positions across our infrastructure.</p>
-        </article>
+                    <p>
+                        Support for gaming infrastructure,
+                        tournament scheduling and
+                        hardware connectivity.
+                    </p>
 
-    </section>
+                </article>
 
-</main>
+                <article class="support-card glass-panel">
 
-<footer class="support-footer">
+                    <h3>Client Management</h3>
 
-    <div class="newsletter">
+                    <p>
+                        Tools and logs for handling client
+                        communications and project delivery
+                        expectations.
+                    </p>
 
-        <h3>Subsystem Newsletter Inflow & Search</h3>
+                </article>
 
-        <div class="newsletter-row">
+                <article class="support-card glass-panel">
 
-            <input type="email"
-                   placeholder="Enter your mail address">
+                    <h3>Jobs Available</h3>
 
-            <button>Subscribe</button>
+                    <p>
+                        View live project requirements and
+                        open positions across our
+                        infrastructure.
+                    </p>
 
-        </div>
+                </article>
+
+            </section>
+
+        </main>
+
+        <div id="footer-mount"></div>
 
     </div>
 
-  
+    <script src="../bg-animation/bg-animation.js"></script>
 
-    <p>
-        © 2026 Enfield Dev LTD. All rights reserved.
-    </p>
+    <script src="../navbar/navbar.js"></script>
 
-</footer>
+    <script src="../the-dome-menu/dome-menu.js"></script>
 
-<script src="../menu/menu-loader.js"></script>
-<script src="../Theme/theme.js"></script>
-<script src="../global-bg/global-bg.js"></script>
+    <script src="../dark-mode/dark-mode.js"></script>
 
+    <script src="../footer/footer.js"></script>
 
 </body>
 

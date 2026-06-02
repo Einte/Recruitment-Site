@@ -1,0 +1,123 @@
+/* =====================================================
+   DARK THEME (DEFAULT)
+===================================================== */
+
+:root {
+    --body-bg: #0c3f38;
+    --text-main: #ffffff;
+    --text-sub: #ccffd8;
+    --glass-bg: rgba(4, 18, 10, 0.65);
+    --glass-border: rgba(34, 197, 94, 0.35);
+}
+
+/* =====================================================
+   LIGHT THEME
+===================================================== */
+
+body.light-mode {
+    --body-bg: #f7f9fa;
+    --text-main: #111827;
+    --text-sub: #166534;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================================
+   DARK MODE TOGGLE CONTAINER
+===================================================== */
+
+.dark-mode-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =====================================================
+   SWITCH HOLDER
+===================================================== */
+
+.dark-mode-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+
+/* =====================================================
+   HIDE CHECKBOX
+===================================================== */
+
+.dark-mode-switch input {
+    display: none;
+}
+
+/* =====================================================
+   ICON HOLDER
+===================================================== */
+
+.dark-mode-toggle {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =====================================================
+   DARK MODE MOON
+===================================================== */
+
+.dark-mode-toggle::before {
+    content: "☾";
+
+    font-size: 38px;
+
+    color: var(--text-main);
+
+    transition:
+        transform 0.4s ease,
+        color 0.4s ease;
+}
+
+/* =====================================================
+   LIGHT MODE SUN
+===================================================== */
+
+.dark-mode-switch input:checked+.dark-mode-toggle::before {
+    content: "☀";
+
+    color: #fbbf24;
+
+    transform: rotate(180deg);
+}
+
+/* =====================================================
+   SUN RAYS
+===================================================== */
+
+.dark-mode-switch input:checked+.dark-mode-toggle::after {
+    content: "";
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px dashed #fbbf24;
+    animation: spinRays 12s linear infinite;
+}
+
+/* =====================================================
+   SUN RAY ANIMATION
+===================================================== */
+
+@keyframes spinRays {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

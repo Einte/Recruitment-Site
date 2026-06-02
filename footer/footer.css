@@ -1,0 +1,178 @@
+/* =====================================================
+
+   FEATURE: FOOTER
+
+   PURPOSE:
+   Global footer for all pages.
+
+===================================================== */
+
+
+/* =====================================================
+   FOOTER CONTAINER
+===================================================== */
+
+.footer-container {
+    margin-top: 80px;
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}
+/* =====================================================
+   NEWSLETTER SECTION
+===================================================== */
+
+.footer-newsletter-section {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 auto;
+}
+/* =====================================================
+   NEWSLETTER LABEL
+===================================================== */
+
+.footer-newsletter-section label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+/* =====================================================
+   NEWSLETTER INPUT ROW
+===================================================== */
+
+.footer-newsletter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+/* =====================================================
+   EMAIL INPUT
+===================================================== */
+
+#newsletter-email {
+    flex: 1;
+    min-height: 50px;
+    padding: 0 16px;
+    border: 2px solid rgba(34,197,94,0.3);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.9);
+    color: #111827;
+    font-size: 15px;
+}
+/* =====================================================
+   SUBSCRIBE BUTTON
+===================================================== */
+
+#newsletter-subscribe-button {
+    height: 50px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+#newsletter-subscribe-button:hover {
+
+    transform: translateY(-2px);
+
+    opacity: 0.9;
+
+}
+
+
+/* =====================================================
+   SOCIAL ICONS
+===================================================== */
+
+.footer-social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+/* =====================================================
+   SOCIAL NODE
+===================================================== */
+
+.footer-social-node {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.footer-social-node:hover {
+    transform: translateY(-4px);
+    border-color: #22c55e;
+    box-shadow:
+        0 0 15px rgba(34,197,94,0.35);
+}
+
+
+/* =====================================================
+   SVG ICONS
+===================================================== */
+
+.footer-social-node {
+    color: var(--text-main);
+}
+
+.footer-social-node svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+/* =====================================================
+   COPYRIGHT
+===================================================== */
+
+.footer-copyright {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+    .footer-newsletter-container {
+        flex-direction: column;
+    }
+
+    #newsletter-email {
+        width: 100%;
+    }
+
+    #newsletter-subscribe-button {
+        width: 100%;
+    }
+
+}
+

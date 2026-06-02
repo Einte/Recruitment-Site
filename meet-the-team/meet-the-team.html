@@ -5,18 +5,23 @@
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../Theme/theme.css">
-  <link rel="stylesheet" href="../the-dome-menu/dome-menu.css">
+  <link rel="stylesheet" href="../dark-mode/dark-mode.css">
+    <link rel="stylesheet" href="../the-dome-menu/dome-menu.css">
+    <link rel="stylesheet" href="../footer/footer.css">
+    <link rel="stylesheet" href="../navbar/navbar.css">
+    <link rel="stylesheet" href="../bg-animation/bg-animation.css">
   <link rel="stylesheet" href="../meet-the-team/meat-the-team.css">
   <title>Meet the Team | Enfield Dev LTD</title>
 </head>
 <body>
 
- <div id="universal-nav-anchor"></div>
+ <div id="background-animation-mount">
     <svg id="plexusSVG"></svg>
-    <div class="theme-toggle-wrapper"></div>
-   
 </div>
+<div id="navbar-mount"></div>
+<div id="dome-menu-mount"></div>
+<div id="dark-mode-mount"></div>
+
     <main>
       <div class="workspace-grid" style="display: grid; margin-top: 200px;">
 
@@ -85,16 +90,19 @@
 
       </div>
     </main>
-
-    <footer>
-      <p>&copy; 2026 Enfield Dev LTD. Infrastructure tracking nodes active.</p>
-    </footer>
+    
   </div>
 
-  <script src="../meet-the-team/meet-the-team.js"></script>
-   <script src="../menu/menu-loader.js"></script>
-    <script src="../Theme/theme.js"></script>
-        <script src="../global-bg/global-bg.js"></script>
+<div id="footer-mount"></div>
+
+
+
+   <script src="../bg-animation/bg-animation.js"></script>
+    <script src="../navbar/navbar.js"></script>
+    <script src="../the-dome-menu/dome-menu.js"></script>
+    <script src="../dark-mode/dark-mode.js"></script>
+    <script src="../footer/footer.js"></script>
+<script src="../meet-the-team/meet-the-team.js"></script>
 </body>
 
 </html>

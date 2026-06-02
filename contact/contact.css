@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #020604;
+  background-color:var(--body-bg);
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
@@ -34,7 +34,7 @@ body {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
   -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
-  border: 1px solid var(--glass-border) !important;
+  border: 1px solid var(--glass-border);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
@@ -201,50 +201,7 @@ main {
   color: #00d9ff;
 }
 
-/* ==========================================================================
-   7. RUNTIME STABLE ISOLATED GLOBAL FOOTER W/ METRIC SOCIAL PADS
-   ========================================================================== */
-footer {
-  border-top: 1px solid rgba(34, 197, 94, 0.2);
-  background: rgba(2, 8, 4, 0.8);
-  padding: 30px 20px;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
 
-.social-row {
-  display: flex;
-  gap: 20px;
-}
-
-.social-icon {
-  color: #ccffd8;
-  text-decoration: none;
-  font-family: monospace;
-  font-size: 13px;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  padding: 6px 14px;
-  border-radius: 20px;
-  background: rgba(4, 18, 10, 0.4);
-  transition: all 0.2s ease;
-}
-
-.social-icon:hover {
-  color: #00d9ff;
-  border-color: #00d9ff;
-  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
-}
-
-footer p {
-  color: #a3c2ae;
-  font-size: 13px;
-}
 
 /* ==========================================================================
    8. SYSTEM RESPONSIVE DISPLAY BREAKPOINTS
