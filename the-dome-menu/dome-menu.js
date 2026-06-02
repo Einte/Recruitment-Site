@@ -59,7 +59,7 @@ async function loadDomeMenu() {
         const response =
 
             await fetch(
-                "/the-dome-menu/dome-menu.html"
+                "../the-dome-menu/dome-menu.html"
             );
 
         if (!response.ok) {

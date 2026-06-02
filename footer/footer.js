@@ -37,7 +37,7 @@ async function loadFooter() {
 
         const response =
             await fetch(
-                "/footer/footer.html"
+                "../footer/footer.html"
             );
 
         if (!response.ok) {
