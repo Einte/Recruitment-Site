@@ -23,7 +23,7 @@ async function loadFooter() {
   }
 
   try {
-    const response = await fetch("../footer/footer.html");
+    const response = await fetch("/Features/footer/footer.html");
 
     if (!response.ok) {
       throw new Error("FOOTER LOAD FAILED");

@@ -63,14 +63,14 @@
 .nav-logo {
 
     white-space: nowrap;
-
+    margin-left: 56px;
     font-family:
         "Segoe UI",
         Tahoma,
         Geneva,
         Verdana,
         sans-serif;
-
+    transition: margin-left 0.3s ease;
     transition: transform 0.35s ease;
 
 }
@@ -83,7 +83,7 @@
 .nav-logo.dome-open {
 
     transform: translateX(160px);
-
+    margin-left: 80px;
     scale: 0.95;
 
 }

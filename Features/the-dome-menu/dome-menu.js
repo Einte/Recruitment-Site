@@ -41,7 +41,7 @@ async function loadDomeMenu() {
   }
 
   try {
-    const response = await fetch("../the-dome-menu/dome-menu.html");
+    const response = await fetch("/Features/the-dome-menu/dome-menu.html");
 
     if (!response.ok) {
       throw new Error("DOME MENU LOAD FAILED");

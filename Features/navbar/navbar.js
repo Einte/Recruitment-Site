@@ -25,7 +25,7 @@ async function loadNavbar() {
   }
 
   try {
-    const response = await fetch(`${SITE_ROOT}/navbar/navbar.html`);
+    const response = await fetch(`${SITE_ROOT}/Features/navbar/navbar.html`);
 
     if (!response.ok) {
       throw new Error("NAVBAR LOAD FAILED");

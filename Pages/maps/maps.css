@@ -148,48 +148,6 @@ main {
   filter: grayscale(1) invert(0.92) contrast(1.15) brightness(0.95);
 }
 
-/* ==========================================================================
-   7. RUNTIME STABLE ISOLATED GLOBAL FOOTER W/ METRIC SOCIAL PADS
-   ========================================================================== */
-footer {
-  border-top: 1px solid var(--glass-border);
-  background: rgba(2, 8, 4, 0.8);
-  padding: 25px 20px;
-  text-align: center;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.social-row {
-  display: flex;
-  gap: 20px;
-}
-
-.social-icon {
-  color: #ccffd8;
-  text-decoration: none;
-  font-family: monospace;
-  font-size: 13px;
-  border: 1px solid var(--glass-border);
-  padding: 6px 14px;
-  border-radius: 20px;
-  background: rgba(4, 18, 10, 0.4);
-  transition: all 0.2s ease;
-}
-
-.social-icon:hover {
-  color: #00d9ff;
-  border-color: #00d9ff;
-  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
-}
-
-footer p { 
-  color: #a3c2ae; 
-  font-size: 13px; 
-}
 
 /* ==========================================================================
    8. SYSTEM RESPONSIVE DISPLAY BREAKPOINTS
@@ -204,14 +162,3 @@ footer p {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .nav-links { 
-    display: none !important; 
-  }
-  
-  .navbar { 
-    width: 100% !important; 
-    padding: 0 20px !important; 
-    flex-direction: row-reverse !important; 
-  }
-}

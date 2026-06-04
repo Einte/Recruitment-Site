@@ -1,50 +1,5 @@
-// ==========================================
-// 1. BULLETPROOF THEME ENGINE (Anti-Flash)
-// ==========================================
-function applyInitialTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
-        document.body.classList.add("light-mode");
-    } else {
-        document.body.classList.remove("light-mode");
-    }
-}
 
-// Check for body structural existence immediately or delay to DOM tree mount
-if (document.body) {
-    applyInitialTheme();
-} else {
-    document.addEventListener("DOMContentLoaded", applyInitialTheme);
-}
 
-// Sync interactive theme switch behaviors if explicitly on page context
-document.addEventListener("DOMContentLoaded", () => {
-    const themeCheckbox = document.getElementById("themeCheckbox");
-    const toggleLabel = document.getElementById("toggleLabel");
-
-    if (!themeCheckbox) return;
-
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
-        themeCheckbox.checked = true;
-        if (toggleLabel) toggleLabel.textContent = "Light";
-    } else {
-        themeCheckbox.checked = false;
-        if (toggleLabel) toggleLabel.textContent = "Dark";
-    }
-
-    themeCheckbox.addEventListener("change", () => {
-        if (themeCheckbox.checked) {
-            document.body.classList.add("light-mode");
-            if (toggleLabel) toggleLabel.textContent = "Light";
-            localStorage.setItem("theme", "light");
-        } else {
-            document.body.classList.remove("light-mode");
-            if (toggleLabel) toggleLabel.textContent = "Dark";
-            localStorage.setItem("theme", "dark");
-        }
-    });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. SELECT ALL ELEMENTS ONCE
@@ -145,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-// ==========================================
+// ==========================================//
 // 3. AUTO CONTROL FILL TRACK ROUTERS
 // ==========================================
 function syncJobCode(jobTitle) {
