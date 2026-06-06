@@ -1,6 +1,4 @@
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. SELECT ALL ELEMENTS ONCE
     const genBtn = document.getElementById('preview-btn');
@@ -157,7 +155,11 @@ if (generateBtn && statusBoxPane) {
             <strong>COMMS CHANNELS:</strong> TEL: ${phone} / E-MAIL: ${email}
             <strong>DEPLOYMENT TRACK:</strong> ${job} [${code}]
             <strong>ROUTER REFERENCE:</strong> ${ref}
-            <strong>BIOMETRIC PAYLOAD:</strong> ${freezeFrameImg && freezeFrameImg.src ? "Screenshot Mounted" : "No Frame Captured"}
+            <strong>BIOMETRIC PAYLOAD:</strong> ${typeof freezeFrameImg !== "undefined" &&
+                                                        freezeFrameImg &&
+                                                        freezeFrameImg.src
+                                                        ? "Screenshot Mounted"
+                                                        : "No Frame Captured"}
         `;
     });
 }

@@ -1,162 +1,258 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-    <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="/Features/bg-animation/bg-animation.css">
-    <link rel="stylesheet" href="/Features/dark-mode/dark-mode.css">
-    <link rel="stylesheet" href="/Features/footer/footer.css">
-    <link rel="stylesheet" href="/Features/navbar/navbar.css">
-    <link rel="stylesheet" href="/Features/the-dome-menu/dome-menu.css">
-    <link rel="stylesheet" href="/Pages/apply/apply.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Features/bg-animation/bg-animation.css" />
+    <link rel="stylesheet" href="/Features/dark-mode/dark-mode.css" />
+    <link rel="stylesheet" href="/Features/footer/footer.css" />
+    <link rel="stylesheet" href="/Features/navbar/navbar.css" />
+    <link rel="stylesheet" href="/Features/the-dome-menu/dome-menu.css" />
+    <link rel="stylesheet" href="/Pages/apply/apply.css" />
     <title>BioMetric Enrolment Station | Enfield Dev LTD</title>
-</head>
+  </head>
 
-<body>
-    
- <div id="background-animation-mount">
-    <svg id="plexusSVG"></svg>
-</div>
-<div id="navbar-mount"></div>
-<div id="dome-menu-mount"></div>
-<div id="dark-mode-mount"></div>
+  <body>
+    <div id="background-animation-mount">
+      <svg id="plexusSVG"></svg>
+    </div>
+    <div id="navbar-mount"></div>
+    <div id="dome-menu-mount"></div>
+    <div id="dark-mode-mount"></div>
 
     <div class="congrats-modal-overlay" id="congratsOverlay">
-        <div class="congrats-card glass-panel">
-            <h2>Congrats! 🎉</h2>
-            <p>Your application has been submitted</p>
-            <button type="button" class="btn-modal-close" onclick="dismissCelebrationModal()">Close Node</button>
-        </div>
+      <div class="congrats-card glass-panel">
+        <h2>Congrats! 🎉</h2>
+        <p>Your application has been submitted</p>
+        <button
+          type="button"
+          class="btn-modal-close"
+          onclick="dismissCelebrationModal()"
+        >
+          Close Node
+        </button>
+      </div>
     </div>
 
     <div class="site-wrapper">
-        <main>
+      <main>
+        <div class="speech-bubble-wrapper">
+          <section class="speech-bubble-card glass-panel">
+            <h1>Join the <span>Enfield Dev Ltd</span> Core Network</h1>
+            <p>
+              We are searching for the next generation of software engineers,
+              database operators, and systems architects to optimize our local
+              digital infrastructure ecosystem.
+            </p>
+            <p>
+              Initialize your identity parameters inside the terminal module on
+              the right. Secure biometric onboarding tracks data fields directly
+              into your node registration file.
+            </p>
+          </section>
+        </div>
 
-            <div class="speech-bubble-wrapper">
-                <section class="speech-bubble-card glass-panel">
-                    <h1>Join the <span>Enfield Dev Ltd</span> Core Network</h1>
-                    <p>We are searching for the next generation of software engineers, database operators, and systems
-                        architects to optimize our local digital infrastructure ecosystem.</p>
-                    <p>Initialize your identity parameters inside the terminal module on the right. Secure biometric
-                        onboarding tracks data fields directly into your node registration file.</p>
-                </section>
+        <section class="biometric-console glass-panel">
+          <div class="console-header-title">
+            // Biometric Enrolment Station v3.30
+          </div>
+
+          <div class="console-top-row">
+            <div class="photo-area-box" id="photoTarget">
+              <div class="photo-placeholder-text" id="photoTxt">
+                [ FRAME EMPTY ]
+              </div>
             </div>
 
-            <section class="biometric-console glass-panel">
-                <div class="console-header-title">// Biometric Enrolment Station v3.30</div>
+            <div class="status-display-pane" id="statusBoxPane">
+              <span class="status-title-lbl"> STATUS: IDLE </span>
 
-                <div class="console-top-row">
-                    <div class="photo-area-box" id="photoTarget">
-                        <div class="photo-placeholder-text" id="photoTxt">[ Frame Empty ]</div>
-                        <img id="freezeFrameCapture" src="" alt="Captured Profile Snapshot">
-                    </div>
+              <span style="color: #a3c2ae; font-style: italic">
+                Await validation parameter data generation...
+              </span>
+            </div>
+          </div>
 
-                    <div class="status-display-pane" id="statusBoxPane">
-                        <span class="status-title-lbl">STATUS: IDLE</span>
-                        <span style="color: #a3c2ae; font-style: italic;">Await validation parameter data
-                            generation...</span>
-                    </div>
+          <div class="console-bottom-grid">
+            <div class="left-media-hardware-column" id="hardwareCol">
+              <div class="camera-video-window" id="camWindow">
+                <div class="laser-scanner-line"></div>
+
+                <div class="cam-icon-indicator" id="camIcon">📷</div>
+
+                <div class="cam-closed-overlay" id="camClosedMsg">
+                  CAMERA IDLE
                 </div>
 
-                <div class="console-bottom-grid">
+                <video id="liveWebcam" autoplay playsinline muted></video>
 
-                    <div class="left-media-hardware-column" id="hardwareCol">
-                        <div class="camera-video-window" id="camWindow">
-                            <div class="laser-scanner-line"></div>
-                            <div class="cam-icon-indicator" id="camIcon">📷</div>
-                            <div class="cam-closed-overlay" id="camClosedMsg" id="photoTxt">CAMERA IDLE</div>
+                <img
+                  id="freezeFrameCapture"
+                  alt="Captured Biometric Frame"
+                  style="
+                    display: none;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    inset: 0;
+                    z-index: 4;
+                  "
+                />
+              </div>
 
-                            <video id="liveWebcam" autoplay playsinline muted></video>
-                            <img id="freezeFrameCapture" alt="Captured Biometric Frame"
-                                style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 4;">
-                        </div>
+              <canvas
+                id="snapshotCanvas"
+                width="400"
+                height="400"
+                style="display: none"
+              >
+              </canvas>
 
-                        <canvas id="snapshotCanvas" width="400" height="400" style="display: none;"></canvas>
+              <button
+                type="button"
+                class="btn-console-action btn-start"
+                id="startActionBtn"
+              >
+                Start Scan
+              </button>
 
-                        <button type="button" class="btn-console-action btn-start" id="startActionBtn">Start Scan</button>
-                        
-                        <button type="button" class="btn-console-action btn-generate" id="generateActionBtn">Generate Data</button>
-                        <button type="button" class="btn-console-action btn-submit-app" id="submitApplicationBtn">Submit Application</button>
-                    </div>
+              <button
+                type="button"
+                class="btn-console-action btn-generate"
+                id="generateActionBtn"
+              >
+                Generate Data
+              </button>
 
-                    <form id="recruitmentForm" class="right-fields-matrix-column" onsubmit="event.preventDefault();">
-
-                        <div class="field-inline-row">
-                            <div class="field-cell">
-                                <span class="field-label-tag">First Name</span>
-                                <input type="text" id="inFirstName" placeholder="First Name" required>
-                            </div>
-                            <div class="field-cell">
-                                <span class="field-label-tag">Last Name</span>
-                                <input type="text" id="inLastName" placeholder="Last Name" required>
-                            </div>
-                        </div>
-
-                        <div class="field-inline-row">
-                            <div class="field-cell">
-                                <span class="field-label-tag">Phone Number</span>
-                                <input type="tel" id="inPhone" placeholder="Phone Number" required>
-                            </div>
-                            <div class="field-cell">
-                                <span class="field-label-tag">Email Address</span>
-                                <input type="email" id="inEmail" placeholder="Email Address" required>
-                            </div>
-                        </div>
-
-                        <div class="field-inline-row">
-                            <div class="field-cell">
-                                <span class="field-label-tag">Job Title</span>
-                                <select id="inJobProvision" required onchange="syncJobCode(this.value)">
-                                    <option value="" disabled selected>Select Track</option>
-                                    <option value="Junior Web Developer">Junior Web Developer</option>
-                                    <option value="Apprentice Infrastructure Engineer">Apprentice Infrastructure
-                                        Engineer</option>
-                                    <option value="Database Operator">Database Operator</option>
-                                </select>
-                            </div>
-                            <div class="field-cell">
-                                <span class="field-label-tag">Job Code</span>
-                                <input type="text" id="inJobCode" placeholder="Job Code" readonly>
-                            </div>
-                        </div>
-
-                        <div class="field-inline-row">
-                            <div class="field-cell">
-                                <span class="field-label-tag">CV Upload</span>
-                                <div class="file-input-wrapper">
-                                    <div class="custom-file-btn" id="uploadFileLabel">Upload CV (PDF)</div>
-                                    <input type="file" id="inCvUpload" accept=".pdf" onchange="updateFileLabel(this)">
-                                </div>
-                            </div>
-                            <div class="field-cell">
-                                <span class="field-label-tag">Job Ref</span>
-                                <input type="text" id="inJobRef" placeholder="Reference Code" readonly>
-                            </div>
-                        </div>
-
-                        <div class="cover-letter-wrapper">
-                            <label for="inCoverLetter" class="field-label-tag">Cover Letter</label>
-                            <textarea id="inCoverLetter" rows="3"
-                                placeholder="Provide background credentials motivation summary specifications..."></textarea>
-                        </div>
-
-                    </form>
+              <button
+                type="button"
+                class="btn-console-action btn-submit-app"
+                id="submitApplicationBtn"
+              >
+                Submit Application
+              </button>
+            </div>
+            <form
+              id="recruitmentForm"
+              class="right-fields-matrix-column"
+              onsubmit="event.preventDefault()"
+            >
+              <div class="field-inline-row">
+                <div class="field-cell">
+                  <span class="field-label-tag">First Name</span>
+                  <input
+                    type="text"
+                    id="inFirstName"
+                    placeholder="First Name"
+                    required
+                  />
                 </div>
-            </section>
+                <div class="field-cell">
+                  <span class="field-label-tag">Last Name</span>
+                  <input
+                    type="text"
+                    id="inLastName"
+                    placeholder="Last Name"
+                    required
+                  />
+                </div>
+              </div>
 
-        </main>
+              <div class="field-inline-row">
+                <div class="field-cell">
+                  <span class="field-label-tag">Phone Number</span>
+                  <input
+                    type="tel"
+                    id="inPhone"
+                    placeholder="Phone Number"
+                    required
+                  />
+                </div>
+                <div class="field-cell">
+                  <span class="field-label-tag">Email Address</span>
+                  <input
+                    type="email"
+                    id="inEmail"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+              </div>
 
-        <canvas id="snapshotCanvas" width="400" height="400" style="display:none;"></canvas>
+              <div class="field-inline-row">
+                <div class="field-cell">
+                  <span class="field-label-tag">Job Title</span>
+                  <select
+                    id="inJobProvision"
+                    required
+                    onchange="syncJobCode(this.value)"
+                  >
+                    <option value="" disabled selected>Select Track</option>
+                    <option value="Junior Web Developer">
+                      Junior Web Developer
+                    </option>
+                    <option value="Apprentice Infrastructure Engineer">
+                      Apprentice Infrastructure Engineer
+                    </option>
+                    <option value="Database Operator">Database Operator</option>
+                  </select>
+                </div>
+                <div class="field-cell">
+                  <span class="field-label-tag">Job Code</span>
+                  <input
+                    type="text"
+                    id="inJobCode"
+                    placeholder="Job Code"
+                    readonly
+                  />
+                </div>
+              </div>
 
-       
+              <div class="field-inline-row">
+                <div class="field-cell">
+                  <span class="field-label-tag">CV Upload</span>
+                  <div class="file-input-wrapper">
+                    <div class="custom-file-btn" id="uploadFileLabel">
+                      Upload CV (PDF)
+                    </div>
+                    <input
+                      type="file"
+                      id="inCvUpload"
+                      accept=".pdf"
+                      onchange="updateFileLabel(this)"
+                    />
+                  </div>
+                </div>
+                <div class="field-cell">
+                  <span class="field-label-tag">Job Ref</span>
+                  <input
+                    type="text"
+                    id="inJobRef"
+                    placeholder="Reference Code"
+                    readonly
+                  />
+                </div>
+              </div>
+
+              <div class="cover-letter-wrapper">
+                <label for="inCoverLetter" class="field-label-tag"
+                  >Cover Letter</label
+                >
+                <textarea
+                  id="inCoverLetter"
+                  rows="3"
+                  placeholder="Provide background credentials motivation summary specifications..."
+                ></textarea>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
     </div>
 
-
     <div id="footer-mount"></div>
-
-
 
     <script src="/Features/bg-animation/bg-animation.js"></script>
     <script src="/Features/navbar/navbar.js"></script>
@@ -164,6 +260,5 @@
     <script src="/Features/dark-mode/dark-mode.js"></script>
     <script src="/Features/footer/footer.js"></script>
     <script src="/Pages/apply/apply.js"></script>
-</body>
-
+  </body>
 </html>
